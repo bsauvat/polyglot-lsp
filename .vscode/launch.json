@@ -46,7 +46,7 @@
         "<node_internals>/**/*.js"
       ],
       "env": {
-        "__RA_LSP_SERVER_DEBUG": "${workspaceFolder}/target/debug/rust-analyzer"
+        "__RA_LSP_SERVER_DEBUG": "${workspaceFolder}/target/debug/polyglot-analyzer"
       }
     },
     {
@@ -67,7 +67,7 @@
         "<node_internals>/**/*.js"
       ],
       "env": {
-        "__RA_LSP_SERVER_DEBUG": "${workspaceFolder}/target/release/rust-analyzer"
+        "__RA_LSP_SERVER_DEBUG": "${workspaceFolder}/target/release/polyglot-analyzer"
       }
     },
     {
@@ -89,7 +89,7 @@
         "<node_internals>/**/*.js"
       ],
       "env": {
-        "__RA_LSP_SERVER_DEBUG": "${workspaceFolder}/target/release/rust-analyzer"
+        "__RA_LSP_SERVER_DEBUG": "${workspaceFolder}/target/release/polyglot-analyzer"
       }
     },
     {

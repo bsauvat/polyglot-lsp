@@ -50,7 +50,7 @@ setInterval(
 function renderCommand(cmd: ra.CommandLink): string {
     const commandId = randomUUID();
     LINKED_COMMANDS.set(commandId, cmd);
-    return `[${cmd.title}](command:rust-analyzer.linkToCommand?${encodeURIComponent(
+    return `[${cmd.title}](command:polyglot-analyzer.linkToCommand?${encodeURIComponent(
         JSON.stringify([commandId]),
     )} '${cmd.tooltip}')`;
 }
@@ -134,7 +134,7 @@ export async function createClient(
                         !unlinkedFiles.includes(uri) &&
                         diag.message !== "file not included in module tree"
                     ) {
-                        const config = vscode.workspace.getConfiguration("rust-analyzer");
+                        const config = vscode.workspace.getConfiguration("polyglot-analyzer");
                         if (config.get("showUnlinkedFileNotification")) {
                             unlinkedFiles.push(uri);
                             const folder = vscode.workspace.getWorkspaceFolder(uri)?.uri.fsPath;
@@ -305,7 +305,7 @@ export async function createClient(
                             const action = new vscode.CodeAction(item.title, kind);
                             const group = (item as any).group;
                             action.command = {
-                                command: "rust-analyzer.resolveCodeAction",
+                                command: "polyglot-analyzer.resolveCodeAction",
                                 title: item.title,
                                 arguments: [item],
                             };
@@ -334,7 +334,7 @@ export async function createClient(
                                 const item = unwrapUndefinable(items[0]);
                                 action.kind = item.kind;
                                 action.command = {
-                                    command: "rust-analyzer.applyActionGroup",
+                                    command: "polyglot-analyzer.applyActionGroup",
                                     title: "",
                                     arguments: [
                                         items.map((item) => {
@@ -364,8 +364,8 @@ export async function createClient(
     };
 
     const client = new lc.LanguageClient(
-        "rust-analyzer",
-        "Rust Analyzer Language Server",
+        "polyglot-analyzer",
+        "Polyglot Analyzer Language Server",
         serverOptions,
         clientOptions,
     );
@@ -391,10 +391,10 @@ class ExperimentalFeatures implements lc.StaticFeature {
             openServerLogs: true,
             commands: {
                 commands: [
-                    "rust-analyzer.runSingle",
-                    "rust-analyzer.debugSingle",
-                    "rust-analyzer.showReferences",
-                    "rust-analyzer.gotoLocation",
+                    "polyglot-analyzer.runSingle",
+                    "polyglot-analyzer.debugSingle",
+                    "polyglot-analyzer.showReferences",
+                    "polyglot-analyzer.gotoLocation",
                     "editor.action.triggerParameterHints",
                 ],
             },

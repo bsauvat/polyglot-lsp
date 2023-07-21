@@ -31,7 +31,7 @@ export class Cargo {
         const cargoArgs = [...args, "--message-format=json"];
 
         // arguments for a runnable from the quick pick should be updated.
-        // see crates\rust-analyzer\src\main_loop\handlers.rs, handle_code_lens
+        // see crates\polyglot-analyzer\src\main_loop\handlers.rs, handle_code_lens
         switch (cargoArgs[0]) {
             case "run":
                 cargoArgs[0] = "build";
@@ -46,7 +46,7 @@ export class Cargo {
 
         const result: ArtifactSpec = { cargoArgs: cargoArgs };
         if (cargoArgs[0] === "test" || cargoArgs[0] === "bench") {
-            // for instance, `crates\rust-analyzer\tests\heavy_tests\main.rs` tests
+            // for instance, `crates\polyglot-analyzer\tests\heavy_tests\main.rs` tests
             // produce 2 artifacts: {"kind": "bin"} and {"kind": "test"}
             result.filter = (artifacts) => artifacts.filter((it) => it.isTest);
         }

@@ -14,7 +14,7 @@ export function assert(condition: boolean, explanation: string): asserts conditi
 
 export const log = new (class {
     private enabled = true;
-    private readonly output = vscode.window.createOutputChannel("Rust Analyzer Client");
+    private readonly output = vscode.window.createOutputChannel("Polyglot Analyzer Client");
 
     setEnabled(yes: boolean): void {
         log.enabled = yes;

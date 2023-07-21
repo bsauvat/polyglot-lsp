@@ -47,7 +47,7 @@ export async function selectRunnable(
 
     if (items.length === 0) {
         // it is the debug case, run always has at least 'cargo check ...'
-        // see crates\rust-analyzer\src\main_loop\handlers.rs, handle_runnables
+        // see crates\polyglot-analyzer\src\main_loop\handlers.rs, handle_runnables
         await vscode.window.showErrorMessage("There's no debug target!");
         return;
     }
@@ -130,7 +130,7 @@ export function prepareEnv(
 
 export async function createTask(runnable: ra.Runnable, config: Config): Promise<vscode.Task> {
     if (runnable.kind !== "cargo") {
-        // rust-analyzer supports only one kind, "cargo"
+        // polyglot-analyzer supports only one kind, "cargo"
         // do not use tasks.TASK_TYPE here, these are completely different meanings.
 
         throw `Unexpected runnable kind: ${runnable.kind}`;

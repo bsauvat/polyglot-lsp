@@ -11,7 +11,7 @@ use std::{env, fs, path::PathBuf, process};
 
 use anyhow::Context;
 use lsp_server::Connection;
-use rust_analyzer::{cli::flags, config::Config, from_json};
+use polyglot_analyzer::{cli::flags, config::Config, from_json};
 use vfs::AbsPathBuf;
 
 #[cfg(all(feature = "mimalloc"))]
@@ -59,7 +59,7 @@ fn main() -> anyhow::Result<()> {
                 return Ok(());
             }
             if cmd.version {
-                println!("rust-analyzer {}", rust_analyzer::version());
+                println!("rust-analyzer {}", polyglot_analyzer::version());
                 return Ok(());
             }
 
@@ -163,7 +163,7 @@ fn with_extra_thread(
 }
 
 fn run_server() -> anyhow::Result<()> {
-    tracing::info!("server version {} will start", rust_analyzer::version());
+    tracing::info!("server version {} will start", polyglot_analyzer::version());
 
     let (connection, io_threads) = Connection::stdio();
 
@@ -216,13 +216,13 @@ fn run_server() -> anyhow::Result<()> {
         }
     }
 
-    let server_capabilities = rust_analyzer::server_capabilities(&config);
+    let server_capabilities = polyglot_analyzer::server_capabilities(&config);
 
     let initialize_result = lsp_types::InitializeResult {
         capabilities: server_capabilities,
         server_info: Some(lsp_types::ServerInfo {
-            name: String::from("rust-analyzer"),
-            version: Some(rust_analyzer::version().to_string()),
+            name: String::from("polyglot-analyzer"),
+            version: Some(polyglot_analyzer::version().to_string()),
         }),
         offset_encoding: None,
     };
@@ -239,7 +239,7 @@ fn run_server() -> anyhow::Result<()> {
         config.rediscover_workspaces();
     }
 
-    rust_analyzer::main_loop(config, connection)?;
+    polyglot_analyzer::main_loop(config, connection)?;
 
     io_threads.join()?;
     tracing::info!("server did shut down");

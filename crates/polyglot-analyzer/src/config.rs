@@ -1610,10 +1610,10 @@ impl Config {
         let get = |name: &str| commands.iter().any(|it| it == name) || force;
 
         ClientCommandsConfig {
-            run_single: get("rust-analyzer.runSingle"),
-            debug_single: get("rust-analyzer.debugSingle"),
-            show_reference: get("rust-analyzer.showReferences"),
-            goto_location: get("rust-analyzer.gotoLocation"),
+            run_single: get("polyglot-analyzer.runSingle"),
+            debug_single: get("polyglot-analyzer.debugSingle"),
+            show_reference: get("polyglot-analyzer.showReferences"),
+            goto_location: get("polyglot-analyzer.gotoLocation"),
             trigger_parameter_hints: get("editor.action.triggerParameterHints"),
         }
     }
@@ -2082,7 +2082,7 @@ fn schema(fields: &[(&'static str, &'static str, &[&str], &str)]) -> serde_json:
         .iter()
         .map(|(field, ty, doc, default)| {
             let name = field.replace('_', ".");
-            let name = format!("rust-analyzer.{name}");
+            let name = format!("polyglot-analyzer.{name}");
             let props = field_props(field, ty, doc, default);
             (name, props)
         })
@@ -2429,7 +2429,7 @@ fn manual(fields: &[(&'static str, &'static str, &[&str], &str)]) -> String {
     fields
         .iter()
         .map(|(field, _ty, doc, default)| {
-            let name = format!("rust-analyzer.{}", field.replace('_', "."));
+            let name = format!("polyglot-analyzer.{}", field.replace('_', "."));
             let doc = doc_comment_to_string(doc);
             if default.contains('\n') {
                 format!(

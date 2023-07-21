@@ -532,11 +532,15 @@ impl GlobalState {
             return Ok(());
         };
         if last_op_result.is_empty() {
-            stdx::format_to!(buf, "rust-analyzer failed to discover workspace");
+            stdx::format_to!(buf, "polyglot-analyzer failed to discover workspace");
         } else {
             for ws in last_op_result {
                 if let Err(err) = ws {
-                    stdx::format_to!(buf, "rust-analyzer failed to load workspace: {:#}\n", err);
+                    stdx::format_to!(
+                        buf,
+                        "polyglot-analyzer failed to load workspace: {:#}\n",
+                        err
+                    );
                 }
             }
         }

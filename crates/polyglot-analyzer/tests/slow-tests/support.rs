@@ -9,7 +9,7 @@ use std::{
 use crossbeam_channel::{after, select, Receiver};
 use lsp_server::{Connection, Message, Notification, Request};
 use lsp_types::{notification::Exit, request::Shutdown, TextDocumentIdentifier, Url};
-use rust_analyzer::{config::Config, lsp_ext, main_loop};
+use polyglot_analyzer::{config::Config, lsp_ext, main_loop};
 use serde::Serialize;
 use serde_json::{json, to_string_pretty, Value};
 use test_utils::FixtureWithProjectMeta;

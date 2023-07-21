@@ -1,5 +1,5 @@
 [package]
-name = "rust-analyzer"
+name = "polyglot-analyzer"
 version = "0.0.0"
 homepage = "https://github.com/rust-analyzer/rust-analyzer"
 description = "A language server for the Rust programming language"
@@ -15,7 +15,7 @@ rust-version.workspace = true
 doctest = false
 
 [[bin]]
-name = "rust-analyzer"
+name = "polyglot-analyzer"
 path = "src/bin/main.rs"
 
 [dependencies]

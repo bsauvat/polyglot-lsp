@@ -11,7 +11,7 @@
         "rootDir": ".",
         "newLine": "LF",
 
-        // FIXME: https://github.com/rust-lang/rust-analyzer/issues/15253
+        // FIXME: https://github.com/rust-lang/polyglot-analyzer/issues/15253
         "exactOptionalPropertyTypes": false
     },
     "exclude": ["node_modules", ".vscode-test"],

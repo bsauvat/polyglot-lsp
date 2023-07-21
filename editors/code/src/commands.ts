@@ -27,7 +27,7 @@ export * from "./run";
 
 export function analyzerStatus(ctx: CtxInit): Cmd {
     const tdcp = new (class implements vscode.TextDocumentContentProvider {
-        readonly uri = vscode.Uri.parse("rust-analyzer-status://status");
+        readonly uri = vscode.Uri.parse("polyglot-analyzer-status://status");
         readonly eventEmitter = new vscode.EventEmitter<vscode.Uri>();
 
         async provideTextDocumentContent(_uri: vscode.Uri): Promise<string> {
@@ -48,7 +48,7 @@ export function analyzerStatus(ctx: CtxInit): Cmd {
     })();
 
     ctx.pushExtCleanup(
-        vscode.workspace.registerTextDocumentContentProvider("rust-analyzer-status", tdcp),
+        vscode.workspace.registerTextDocumentContentProvider("polyglot-analyzer-status", tdcp),
     );
 
     return async () => {
@@ -63,7 +63,7 @@ export function analyzerStatus(ctx: CtxInit): Cmd {
 
 export function memoryUsage(ctx: CtxInit): Cmd {
     const tdcp = new (class implements vscode.TextDocumentContentProvider {
-        readonly uri = vscode.Uri.parse("rust-analyzer-memory://memory");
+        readonly uri = vscode.Uri.parse("polyglot-analyzer-memory://memory");
         readonly eventEmitter = new vscode.EventEmitter<vscode.Uri>();
 
         provideTextDocumentContent(_uri: vscode.Uri): vscode.ProviderResult<string> {
@@ -80,7 +80,7 @@ export function memoryUsage(ctx: CtxInit): Cmd {
     })();
 
     ctx.pushExtCleanup(
-        vscode.workspace.registerTextDocumentContentProvider("rust-analyzer-memory", tdcp),
+        vscode.workspace.registerTextDocumentContentProvider("polyglot-analyzer-memory", tdcp),
     );
 
     return async () => {
@@ -344,7 +344,7 @@ async function revealParentChain(document: RustDocument, ctx: CtxInit) {
 }
 
 export async function execRevealDependency(e: RustEditor): Promise<void> {
-    await vscode.commands.executeCommand("rust-analyzer.revealDependency", e);
+    await vscode.commands.executeCommand("polyglot-analyzer.revealDependency", e);
 }
 
 export function ssr(ctx: CtxInit): Cmd {
@@ -407,13 +407,13 @@ export function ssr(ctx: CtxInit): Cmd {
 export function serverVersion(ctx: CtxInit): Cmd {
     return async () => {
         if (!ctx.serverPath) {
-            void vscode.window.showWarningMessage(`rust-analyzer server is not running`);
+            void vscode.window.showWarningMessage(`polyglot-analyzer server is not running`);
             return;
         }
         const { stdout } = spawnSync(ctx.serverPath, ["--version"], { encoding: "utf8" });
-        const versionString = stdout.slice(`rust-analyzer `.length).trim();
+        const versionString = stdout.slice(`polyglot-analyzer `.length).trim();
 
-        void vscode.window.showInformationMessage(`rust-analyzer version: ${versionString}`);
+        void vscode.window.showInformationMessage(`polyglot-analyzer version: ${versionString}`);
     };
 }
 
@@ -422,7 +422,7 @@ export function serverVersion(ctx: CtxInit): Cmd {
 // The contents of the file come from the `TextDocumentContentProvider`
 export function syntaxTree(ctx: CtxInit): Cmd {
     const tdcp = new (class implements vscode.TextDocumentContentProvider {
-        readonly uri = vscode.Uri.parse("rust-analyzer-syntax-tree://syntaxtree/tree.rast");
+        readonly uri = vscode.Uri.parse("polyglot-analyzer-syntax-tree://syntaxtree/tree.rast");
         readonly eventEmitter = new vscode.EventEmitter<vscode.Uri>();
         constructor() {
             vscode.workspace.onDidChangeTextDocument(
@@ -475,7 +475,7 @@ export function syntaxTree(ctx: CtxInit): Cmd {
 
     ctx.pushExtCleanup(new AstInspector(ctx));
     ctx.pushExtCleanup(
-        vscode.workspace.registerTextDocumentContentProvider("rust-analyzer-syntax-tree", tdcp),
+        vscode.workspace.registerTextDocumentContentProvider("polyglot-analyzer-syntax-tree", tdcp),
     );
     ctx.pushExtCleanup(
         vscode.languages.setLanguageConfiguration("ra_syntax_tree", {
@@ -503,8 +503,8 @@ export function syntaxTree(ctx: CtxInit): Cmd {
 function viewHirOrMir(ctx: CtxInit, xir: "hir" | "mir"): Cmd {
     const viewXir = xir === "hir" ? "viewHir" : "viewMir";
     const requestType = xir === "hir" ? ra.viewHir : ra.viewMir;
-    const uri = `rust-analyzer-${xir}://${viewXir}/${xir}.rs`;
-    const scheme = `rust-analyzer-${xir}`;
+    const uri = `polyglot-analyzer-${xir}://${viewXir}/${xir}.rs`;
+    const scheme = `polyglot-analyzer-${xir}`;
     return viewFileUsingTextDocumentContentProvider(ctx, requestType, uri, scheme, true);
 }
 
@@ -596,19 +596,19 @@ export function viewMir(ctx: CtxInit): Cmd {
 //
 // The contents of the file come from the `TextDocumentContentProvider`
 export function interpretFunction(ctx: CtxInit): Cmd {
-    const uri = `rust-analyzer-interpret-function://interpretFunction/result.log`;
+    const uri = `polyglot-analyzer-interpret-function://interpretFunction/result.log`;
     return viewFileUsingTextDocumentContentProvider(
         ctx,
         ra.interpretFunction,
         uri,
-        `rust-analyzer-interpret-function`,
+        `polyglot-analyzer-interpret-function`,
         false,
     );
 }
 
 export function viewFileText(ctx: CtxInit): Cmd {
     const tdcp = new (class implements vscode.TextDocumentContentProvider {
-        readonly uri = vscode.Uri.parse("rust-analyzer-file-text://viewFileText/file.rs");
+        readonly uri = vscode.Uri.parse("polyglot-analyzer-file-text://viewFileText/file.rs");
         readonly eventEmitter = new vscode.EventEmitter<vscode.Uri>();
         constructor() {
             vscode.workspace.onDidChangeTextDocument(
@@ -656,7 +656,7 @@ export function viewFileText(ctx: CtxInit): Cmd {
     })();
 
     ctx.pushExtCleanup(
-        vscode.workspace.registerTextDocumentContentProvider("rust-analyzer-file-text", tdcp),
+        vscode.workspace.registerTextDocumentContentProvider("polyglot-analyzer-file-text", tdcp),
     );
 
     return async () => {
@@ -671,7 +671,7 @@ export function viewFileText(ctx: CtxInit): Cmd {
 
 export function viewItemTree(ctx: CtxInit): Cmd {
     const tdcp = new (class implements vscode.TextDocumentContentProvider {
-        readonly uri = vscode.Uri.parse("rust-analyzer-item-tree://viewItemTree/itemtree.rs");
+        readonly uri = vscode.Uri.parse("polyglot-analyzer-item-tree://viewItemTree/itemtree.rs");
         readonly eventEmitter = new vscode.EventEmitter<vscode.Uri>();
         constructor() {
             vscode.workspace.onDidChangeTextDocument(
@@ -721,7 +721,7 @@ export function viewItemTree(ctx: CtxInit): Cmd {
     })();
 
     ctx.pushExtCleanup(
-        vscode.workspace.registerTextDocumentContentProvider("rust-analyzer-item-tree", tdcp),
+        vscode.workspace.registerTextDocumentContentProvider("polyglot-analyzer-item-tree", tdcp),
     );
 
     return async () => {
@@ -739,8 +739,8 @@ function crateGraph(ctx: CtxInit, full: boolean): Cmd {
         const nodeModulesPath = vscode.Uri.file(path.join(ctx.extensionPath, "node_modules"));
 
         const panel = vscode.window.createWebviewPanel(
-            "rust-analyzer.crate-graph",
-            "rust-analyzer crate graph",
+            "polyglot-analyzer.crate-graph",
+            "polyglot-analyzer crate graph",
             vscode.ViewColumn.Two,
             {
                 enableScripts: true,
@@ -824,7 +824,7 @@ export function expandMacro(ctx: CtxInit): Cmd {
     }
 
     const tdcp = new (class implements vscode.TextDocumentContentProvider {
-        uri = vscode.Uri.parse("rust-analyzer-expand-macro://expandMacro/[EXPANSION].rs");
+        uri = vscode.Uri.parse("polyglot-analyzer-expand-macro://expandMacro/[EXPANSION].rs");
         eventEmitter = new vscode.EventEmitter<vscode.Uri>();
         async provideTextDocumentContent(_uri: vscode.Uri): Promise<string> {
             const editor = vscode.window.activeTextEditor;
@@ -851,7 +851,7 @@ export function expandMacro(ctx: CtxInit): Cmd {
     })();
 
     ctx.pushExtCleanup(
-        vscode.workspace.registerTextDocumentContentProvider("rust-analyzer-expand-macro", tdcp),
+        vscode.workspace.registerTextDocumentContentProvider("polyglot-analyzer-expand-macro", tdcp),
     );
 
     return async () => {
@@ -924,7 +924,7 @@ export function applyActionGroup(_ctx: CtxInit): Cmd {
         const selectedAction = await vscode.window.showQuickPick(actions);
         if (!selectedAction) return;
         await vscode.commands.executeCommand(
-            "rust-analyzer.resolveCodeAction",
+            "polyglot-analyzer.resolveCodeAction",
             selectedAction.arguments,
         );
     };

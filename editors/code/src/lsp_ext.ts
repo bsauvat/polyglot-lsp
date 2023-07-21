@@ -1,10 +1,10 @@
 /**
- * This file mirrors `crates/rust-analyzer/src/lsp_ext.rs` declarations.
+ * This file mirrors `crates/polyglot-analyzer/src/lsp_ext.rs` declarations.
  */
 
 import * as lc from "vscode-languageclient";
 
-// rust-analyzer overrides
+// polyglot-analyzer overrides
 
 export const hover = new lc.RequestType<
     HoverParams,
@@ -24,48 +24,48 @@ export type CommandLinkGroup = {
     commands: CommandLink[];
 };
 
-// rust-analyzer extensions
+// polyglot-analyzer extensions
 
 export const analyzerStatus = new lc.RequestType<AnalyzerStatusParams, string, void>(
-    "rust-analyzer/analyzerStatus",
+    "polyglot-analyzer/analyzerStatus",
 );
-export const cancelFlycheck = new lc.NotificationType0("rust-analyzer/cancelFlycheck");
-export const clearFlycheck = new lc.NotificationType0("rust-analyzer/clearFlycheck");
+export const cancelFlycheck = new lc.NotificationType0("polyglot-analyzer/cancelFlycheck");
+export const clearFlycheck = new lc.NotificationType0("polyglot-analyzer/clearFlycheck");
 export const expandMacro = new lc.RequestType<ExpandMacroParams, ExpandedMacro | null, void>(
-    "rust-analyzer/expandMacro",
+    "polyglot-analyzer/expandMacro",
 );
-export const memoryUsage = new lc.RequestType0<string, void>("rust-analyzer/memoryUsage");
-export const openServerLogs = new lc.NotificationType0("rust-analyzer/openServerLogs");
+export const memoryUsage = new lc.RequestType0<string, void>("polyglot-analyzer/memoryUsage");
+export const openServerLogs = new lc.NotificationType0("polyglot-analyzer/openServerLogs");
 export const relatedTests = new lc.RequestType<lc.TextDocumentPositionParams, TestInfo[], void>(
-    "rust-analyzer/relatedTests",
+    "polyglot-analyzer/relatedTests",
 );
-export const reloadWorkspace = new lc.RequestType0<null, void>("rust-analyzer/reloadWorkspace");
-export const rebuildProcMacros = new lc.RequestType0<null, void>("rust-analyzer/rebuildProcMacros");
+export const reloadWorkspace = new lc.RequestType0<null, void>("polyglot-analyzer/reloadWorkspace");
+export const rebuildProcMacros = new lc.RequestType0<null, void>("polyglot-analyzer/rebuildProcMacros");
 
 export const runFlycheck = new lc.NotificationType<{
     textDocument: lc.TextDocumentIdentifier | null;
-}>("rust-analyzer/runFlycheck");
-export const shuffleCrateGraph = new lc.RequestType0<null, void>("rust-analyzer/shuffleCrateGraph");
+}>("polyglot-analyzer/runFlycheck");
+export const shuffleCrateGraph = new lc.RequestType0<null, void>("polyglot-analyzer/shuffleCrateGraph");
 export const syntaxTree = new lc.RequestType<SyntaxTreeParams, string, void>(
-    "rust-analyzer/syntaxTree",
+    "polyglot-analyzer/syntaxTree",
 );
 export const viewCrateGraph = new lc.RequestType<ViewCrateGraphParams, string, void>(
-    "rust-analyzer/viewCrateGraph",
+    "polyglot-analyzer/viewCrateGraph",
 );
 export const viewFileText = new lc.RequestType<lc.TextDocumentIdentifier, string, void>(
-    "rust-analyzer/viewFileText",
+    "polyglot-analyzer/viewFileText",
 );
 export const viewHir = new lc.RequestType<lc.TextDocumentPositionParams, string, void>(
-    "rust-analyzer/viewHir",
+    "polyglot-analyzer/viewHir",
 );
 export const viewMir = new lc.RequestType<lc.TextDocumentPositionParams, string, void>(
-    "rust-analyzer/viewMir",
+    "polyglot-analyzer/viewMir",
 );
 export const interpretFunction = new lc.RequestType<lc.TextDocumentPositionParams, string, void>(
-    "rust-analyzer/interpretFunction",
+    "polyglot-analyzer/interpretFunction",
 );
 export const viewItemTree = new lc.RequestType<ViewItemTreeParams, string, void>(
-    "rust-analyzer/viewItemTree",
+    "polyglot-analyzer/viewItemTree",
 );
 
 export type AnalyzerStatusParams = { textDocument?: lc.TextDocumentIdentifier };
@@ -84,7 +84,7 @@ export const fetchDependencyList = new lc.RequestType<
     FetchDependencyListParams,
     FetchDependencyListResult,
     void
->("rust-analyzer/fetchDependencyList");
+>("polyglot-analyzer/fetchDependencyList");
 
 export interface FetchDependencyGraphParams {}
 
@@ -100,7 +100,7 @@ export const fetchDependencyGraph = new lc.RequestType<
     FetchDependencyGraphParams,
     FetchDependencyGraphResult,
     void
->("rust-analyzer/fetchDependencyGraph");
+>("polyglot-analyzer/fetchDependencyGraph");
 
 export type ExpandMacroParams = {
     textDocument: lc.TextDocumentIdentifier;
@@ -154,7 +154,7 @@ export const viewRecursiveMemoryLayout = new lc.RequestType<
     lc.TextDocumentPositionParams,
     RecursiveMemoryLayout | null,
     void
->("rust-analyzer/viewRecursiveMemoryLayout");
+>("polyglot-analyzer/viewRecursiveMemoryLayout");
 
 export type JoinLinesParams = {
     textDocument: lc.TextDocumentIdentifier;

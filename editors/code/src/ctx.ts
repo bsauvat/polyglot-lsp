@@ -166,11 +166,11 @@ export class Ctx {
         }
 
         if (!this.traceOutputChannel) {
-            this.traceOutputChannel = new LazyOutputChannel("Rust Analyzer Language Server Trace");
+            this.traceOutputChannel = new LazyOutputChannel("Polyglot Analyzer Language Server Trace");
             this.pushExtCleanup(this.traceOutputChannel);
         }
         if (!this.outputChannel) {
-            this.outputChannel = vscode.window.createOutputChannel("Rust Analyzer Language Server");
+            this.outputChannel = vscode.window.createOutputChannel("Polyglot Analyzer Language Server");
             this.pushExtCleanup(this.outputChannel);
         }
 
@@ -180,9 +180,9 @@ export class Ctx {
                     let message = "bootstrap error. ";
 
                     message +=
-                        'See the logs in "OUTPUT > Rust Analyzer Client" (should open automatically). ';
+                        'See the logs in "OUTPUT > Polyglot Analyzer Client" (should open automatically). ';
                     message +=
-                        'To enable verbose logs use { "rust-analyzer.trace.extension": true }';
+                        'To enable verbose logs use { "polyglot-analyzer.trace.extension": true }';
 
                     log.error("Bootstrap error", err);
                     throw new Error(message);
@@ -198,7 +198,7 @@ export class Ctx {
                 debug: run,
             };
 
-            let rawInitializationOptions = vscode.workspace.getConfiguration("rust-analyzer");
+            let rawInitializationOptions = vscode.workspace.getConfiguration("polyglot-analyzer");
 
             if (this.workspace.kind === "Detached Files") {
                 rawInitializationOptions = {
@@ -385,7 +385,7 @@ export class Ctx {
         };
 
         for (const [name, factory] of Object.entries(this.commandFactories)) {
-            const fullName = `rust-analyzer.${name}`;
+            const fullName = `polyglot-analyzer.${name}`;
             let callback;
             if (isClientRunning(this)) {
                 // we asserted that `client` is defined
@@ -395,7 +395,7 @@ export class Ctx {
             } else {
                 callback = () =>
                     vscode.window.showErrorMessage(
-                        `command ${fullName} failed: rust-analyzer server is not running`,
+                        `command ${fullName} failed: polyglot-analyzer server is not running`,
                     );
             }
 
@@ -414,7 +414,7 @@ export class Ctx {
                 statusBar.tooltip.appendText(status.message ?? "Ready");
                 statusBar.color = undefined;
                 statusBar.backgroundColor = undefined;
-                statusBar.command = "rust-analyzer.stopServer";
+                statusBar.command = "polyglot-analyzer.stopServer";
                 this.dependencies?.refresh();
                 break;
             case "warning":
@@ -425,7 +425,7 @@ export class Ctx {
                 statusBar.backgroundColor = new vscode.ThemeColor(
                     "statusBarItem.warningBackground",
                 );
-                statusBar.command = "rust-analyzer.openLogs";
+                statusBar.command = "polyglot-analyzer.openLogs";
                 icon = "$(warning) ";
                 break;
             case "error":
@@ -434,36 +434,36 @@ export class Ctx {
                 }
                 statusBar.color = new vscode.ThemeColor("statusBarItem.errorForeground");
                 statusBar.backgroundColor = new vscode.ThemeColor("statusBarItem.errorBackground");
-                statusBar.command = "rust-analyzer.openLogs";
+                statusBar.command = "polyglot-analyzer.openLogs";
                 icon = "$(error) ";
                 break;
             case "stopped":
                 statusBar.tooltip.appendText("Server is stopped");
                 statusBar.tooltip.appendMarkdown(
-                    "\n\n[Start server](command:rust-analyzer.startServer)",
+                    "\n\n[Start server](command:polyglot-analyzer.startServer)",
                 );
                 statusBar.color = undefined;
                 statusBar.backgroundColor = undefined;
-                statusBar.command = "rust-analyzer.startServer";
-                statusBar.text = `$(stop-circle) rust-analyzer`;
+                statusBar.command = "polyglot-analyzer.startServer";
+                statusBar.text = `$(stop-circle) polyglot-analyzer`;
                 return;
         }
         if (statusBar.tooltip.value) {
             statusBar.tooltip.appendText("\n\n");
         }
-        statusBar.tooltip.appendMarkdown("\n\n[Open logs](command:rust-analyzer.openLogs)");
+        statusBar.tooltip.appendMarkdown("\n\n[Open logs](command:polyglot-analyzer.openLogs)");
         statusBar.tooltip.appendMarkdown(
-            "\n\n[Reload Workspace](command:rust-analyzer.reloadWorkspace)",
+            "\n\n[Reload Workspace](command:polyglot-analyzer.reloadWorkspace)",
         );
         statusBar.tooltip.appendMarkdown(
-            "\n\n[Rebuild Proc Macros](command:rust-analyzer.rebuildProcMacros)",
+            "\n\n[Rebuild Proc Macros](command:polyglot-analyzer.rebuildProcMacros)",
         );
         statusBar.tooltip.appendMarkdown(
-            "\n\n[Restart server](command:rust-analyzer.restartServer)",
+            "\n\n[Restart server](command:polyglot-analyzer.restartServer)",
         );
-        statusBar.tooltip.appendMarkdown("\n\n[Stop server](command:rust-analyzer.stopServer)");
+        statusBar.tooltip.appendMarkdown("\n\n[Stop server](command:polyglot-analyzer.stopServer)");
         if (!status.quiescent) icon = "$(sync~spin) ";
-        statusBar.text = `${icon}rust-analyzer`;
+        statusBar.text = `${icon}polyglot-analyzer`;
     }
 
     pushExtCleanup(d: Disposable) {

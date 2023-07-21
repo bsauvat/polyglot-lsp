@@ -12,10 +12,10 @@ export type RunnableEnvCfg =
     | { mask?: string; env: Record<string, string> }[];
 
 export class Config {
-    readonly extensionId = "rust-lang.rust-analyzer";
+    readonly extensionId = "rust-lang.polyglot-analyzer";
     configureLang: vscode.Disposable | undefined;
 
-    readonly rootSection = "rust-analyzer";
+    readonly rootSection = "polyglot-analyzer";
     private readonly requiresReloadOpts = [
         "cargo",
         "procMacro",
@@ -70,7 +70,7 @@ export class Config {
         if (!requiresReloadOpt) return;
 
         if (this.restartServerOnConfigChange) {
-            await vscode.commands.executeCommand("rust-analyzer.restartServer");
+            await vscode.commands.executeCommand("polyglot-analyzer.restartServer");
             return;
         }
 
@@ -78,7 +78,7 @@ export class Config {
         const userResponse = await vscode.window.showInformationMessage(message, "Restart now");
 
         if (userResponse) {
-            const command = "rust-analyzer.restartServer";
+            const command = "polyglot-analyzer.restartServer";
             await vscode.commands.executeCommand(command);
         }
     }
@@ -186,7 +186,7 @@ export class Config {
      * const nullableNum = vscode
      *  .workspace
      *  .getConfiguration
-     *  .getConfiguration("rust-analyzer")
+     *  .getConfiguration("polyglot-analyzer")
      *  .get<number | null>(path)!;
      *
      * // What happens is that type of `nullableNum` is `number` but not `null | number`:

@@ -29,7 +29,7 @@ use lsp_types::{
     PartialResultParams, Position, Range, RenameFilesParams, TextDocumentItem,
     TextDocumentPositionParams, WorkDoneProgressParams,
 };
-use rust_analyzer::lsp_ext::{OnEnter, Runnables, RunnablesParams};
+use polyglot_analyzer::lsp_ext::{OnEnter, Runnables, RunnablesParams};
 use serde_json::json;
 use test_utils::skip_slow_tests;
 
@@ -847,7 +847,7 @@ fn resolve_proc_macro() {
         vfs::AbsPathBuf::try_from(std::str::from_utf8(&output.stdout).unwrap().trim()).unwrap();
 
     let standalone_server_name =
-        format!("rust-analyzer-proc-macro-srv{}", std::env::consts::EXE_SUFFIX);
+        format!("polyglot-analyzer-proc-macro-srv{}", std::env::consts::EXE_SUFFIX);
     let proc_macro_server_path = sysroot.join("libexec").join(&standalone_server_name);
 
     let server = Project::with_fixture(

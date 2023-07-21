@@ -1,4 +1,4 @@
-//! The main loop of `rust-analyzer` responsible for dispatching LSP
+//! The main loop of `polyglot-analyzer` responsible for dispatching LSP
 //! requests/replies and notifications back to the client.
 use std::{
     fmt,
@@ -38,7 +38,7 @@ pub fn main_loop(config: Config, connection: Connection) -> anyhow::Result<()> {
     //
     // https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
     // https://docs.microsoft.com/en-us/windows/win32/procthread/priority-boosts
-    // https://github.com/rust-lang/rust-analyzer/issues/2835
+    // https://github.com/rust-lang/polyglot-analyzer/issues/2835
     #[cfg(windows)]
     unsafe {
         use winapi::um::processthreadsapi::*;
@@ -342,8 +342,8 @@ impl GlobalState {
                 // conversion. So this hack is here to stay, and will be considered a hack
                 // until the LSP decides to state that empty messages are allowed.
 
-                // See https://github.com/rust-lang/rust-analyzer/issues/11404
-                // See https://github.com/rust-lang/rust-analyzer/issues/13130
+                // See https://github.com/rust-lang/polyglot-analyzer/issues/11404
+                // See https://github.com/rust-lang/polyglot-analyzer/issues/13130
                 let patch_empty = |message: &mut String| {
                     if message.is_empty() {
                         *message = " ".to_string();
@@ -637,7 +637,7 @@ impl GlobalState {
                     state,
                     message,
                     None,
-                    Some(format!("rust-analyzer/flycheck/{id}")),
+                    Some(format!("polyglot-analyzer/flycheck/{id}")),
                 );
             }
         }
@@ -845,7 +845,7 @@ impl GlobalState {
                                 code_description: Some(lsp_types::CodeDescription {
                                     href: lsp_types::Url::parse(&d.code.url()).unwrap(),
                                 }),
-                                source: Some("rust-analyzer".to_string()),
+                                source: Some("polyglot-analyzer".to_string()),
                                 message: d.message,
                                 related_information: None,
                                 tags: if d.unused {

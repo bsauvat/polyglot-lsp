@@ -31,7 +31,7 @@ pub(crate) fn handle_work_done_progress_cancel(
     params: WorkDoneProgressCancelParams,
 ) -> anyhow::Result<()> {
     if let lsp_types::NumberOrString::String(s) = &params.token {
-        if let Some(id) = s.strip_prefix("rust-analyzer/flycheck/") {
+        if let Some(id) = s.strip_prefix("polyglot-analyzer/flycheck/") {
             if let Ok(id) = u32::from_str_radix(id, 10) {
                 if let Some(flycheck) = state.flycheck.get(id as usize) {
                     flycheck.cancel();
@@ -153,7 +153,7 @@ pub(crate) fn handle_did_change_configuration(
         lsp_types::ConfigurationParams {
             items: vec![lsp_types::ConfigurationItem {
                 scope_uri: None,
-                section: Some("rust-analyzer".to_string()),
+                section: Some("polyglot-analyzer".to_string()),
             }],
         },
         |this, resp| {

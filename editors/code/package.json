@@ -1,6 +1,6 @@
 {
-    "name": "rust-analyzer",
-    "displayName": "rust-analyzer",
+    "name": "polyglot-analyzer",
+    "displayName": "polyglot-analyzer",
     "description": "Rust language support for Visual Studio Code",
     "private": true,
     "icon": "icon.png",
@@ -31,7 +31,7 @@
     "enabledApiProposals": [],
     "scripts": {
         "vscode:prepublish": "npm run build-base -- --minify",
-        "package": "vsce package -o rust-analyzer.vsix",
+        "package": "vsce package -o polyglot-analyzer.vsix",
         "build-base": "esbuild ./src/main.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node --target=node16",
         "build": "npm run build-base -- --sourcemap",
         "watch": "npm run build-base -- --sourcemap --watch",
@@ -101,213 +101,213 @@
         ],
         "commands": [
             {
-                "command": "rust-analyzer.syntaxTree",
+                "command": "polyglot-analyzer.syntaxTree",
                 "title": "Show Syntax Tree",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.viewHir",
+                "command": "polyglot-analyzer.viewHir",
                 "title": "View Hir",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.viewMir",
+                "command": "polyglot-analyzer.viewMir",
                 "title": "View Mir",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.interpretFunction",
+                "command": "polyglot-analyzer.interpretFunction",
                 "title": "Interpret Function",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.viewFileText",
+                "command": "polyglot-analyzer.viewFileText",
                 "title": "View File Text (as seen by the server)",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.viewItemTree",
+                "command": "polyglot-analyzer.viewItemTree",
                 "title": "Debug ItemTree",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.shuffleCrateGraph",
+                "command": "polyglot-analyzer.shuffleCrateGraph",
                 "title": "Shuffle Crate Graph",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.memoryUsage",
+                "command": "polyglot-analyzer.memoryUsage",
                 "title": "Memory Usage (Clears Database)",
-                "category": "rust-analyzer (debug command)"
+                "category": "polyglot-analyzer (debug command)"
             },
             {
-                "command": "rust-analyzer.viewCrateGraph",
+                "command": "polyglot-analyzer.viewCrateGraph",
                 "title": "View Crate Graph",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.viewFullCrateGraph",
+                "command": "polyglot-analyzer.viewFullCrateGraph",
                 "title": "View Crate Graph (Full)",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.expandMacro",
+                "command": "polyglot-analyzer.expandMacro",
                 "title": "Expand macro recursively",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.matchingBrace",
+                "command": "polyglot-analyzer.matchingBrace",
                 "title": "Find matching brace",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.parentModule",
+                "command": "polyglot-analyzer.parentModule",
                 "title": "Locate parent module",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.joinLines",
+                "command": "polyglot-analyzer.joinLines",
                 "title": "Join lines",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.run",
+                "command": "polyglot-analyzer.run",
                 "title": "Run",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.copyRunCommandLine",
+                "command": "polyglot-analyzer.copyRunCommandLine",
                 "title": "Copy Run Command Line",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.debug",
+                "command": "polyglot-analyzer.debug",
                 "title": "Debug",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.newDebugConfig",
+                "command": "polyglot-analyzer.newDebugConfig",
                 "title": "Generate launch configuration",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.analyzerStatus",
+                "command": "polyglot-analyzer.analyzerStatus",
                 "title": "Status",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.reloadWorkspace",
+                "command": "polyglot-analyzer.reloadWorkspace",
                 "title": "Reload workspace",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.rebuildProcMacros",
+                "command": "polyglot-analyzer.rebuildProcMacros",
                 "title": "Rebuild proc macros and build scripts",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.addProject",
+                "command": "polyglot-analyzer.addProject",
                 "title": "Add current file's crate to workspace",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.restartServer",
+                "command": "polyglot-analyzer.restartServer",
                 "title": "Restart server",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.startServer",
+                "command": "polyglot-analyzer.startServer",
                 "title": "Start server",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.stopServer",
+                "command": "polyglot-analyzer.stopServer",
                 "title": "Stop server",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.onEnter",
+                "command": "polyglot-analyzer.onEnter",
                 "title": "Enhanced enter key",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.ssr",
+                "command": "polyglot-analyzer.ssr",
                 "title": "Structural Search Replace",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.serverVersion",
+                "command": "polyglot-analyzer.serverVersion",
                 "title": "Show RA Version",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.openDocs",
+                "command": "polyglot-analyzer.openDocs",
                 "title": "Open Docs",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.openCargoToml",
+                "command": "polyglot-analyzer.openCargoToml",
                 "title": "Open Cargo.toml",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.peekTests",
+                "command": "polyglot-analyzer.peekTests",
                 "title": "Peek Related Tests",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.moveItemUp",
+                "command": "polyglot-analyzer.moveItemUp",
                 "title": "Move item up",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.moveItemDown",
+                "command": "polyglot-analyzer.moveItemDown",
                 "title": "Move item down",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.cancelFlycheck",
+                "command": "polyglot-analyzer.cancelFlycheck",
                 "title": "Cancel running flychecks",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.runFlycheck",
+                "command": "polyglot-analyzer.runFlycheck",
                 "title": "Run flycheck",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.clearFlycheck",
+                "command": "polyglot-analyzer.clearFlycheck",
                 "title": "Clear flycheck diagnostics",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.revealDependency",
+                "command": "polyglot-analyzer.revealDependency",
                 "title": "Reveal File",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             },
             {
-                "command": "rust-analyzer.viewMemoryLayout",
+                "command": "polyglot-analyzer.viewMemoryLayout",
                 "title": "View Memory Layout",
-                "category": "rust-analyzer"
+                "category": "polyglot-analyzer"
             }
         ],
         "keybindings": [
             {
-                "command": "rust-analyzer.parentModule",
+                "command": "polyglot-analyzer.parentModule",
                 "key": "ctrl+shift+u",
                 "when": "editorTextFocus && editorLangId == rust"
             },
             {
-                "command": "rust-analyzer.joinLines",
+                "command": "polyglot-analyzer.joinLines",
                 "key": "ctrl+shift+j",
                 "when": "editorTextFocus && editorLangId == rust"
             }
         ],
         "configuration": {
             "type": "object",
-            "title": "rust-analyzer",
+            "title": "polyglot-analyzer",
             "properties": {
-                "rust-analyzer.cargoRunner": {
+                "polyglot-analyzer.cargoRunner": {
                     "type": [
                         "null",
                         "string"
@@ -315,7 +315,7 @@
                     "default": null,
                     "description": "Custom cargo runner extension ID."
                 },
-                "rust-analyzer.runnables.extraEnv": {
+                "polyglot-analyzer.runnables.extraEnv": {
                     "anyOf": [
                         {
                             "type": "null"
@@ -342,9 +342,9 @@
                         }
                     ],
                     "default": null,
-                    "markdownDescription": "Environment variables passed to the runnable launched using `Test` or `Debug` lens or `rust-analyzer.run` command."
+                    "markdownDescription": "Environment variables passed to the runnable launched using `Test` or `Debug` lens or `polyglot-analyzer.run` command."
                 },
-                "rust-analyzer.runnables.problemMatcher": {
+                "polyglot-analyzer.runnables.problemMatcher": {
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -352,18 +352,18 @@
                     "default": [
                         "$rustc"
                     ],
-                    "markdownDescription": "Problem matchers to use for `rust-analyzer.run` command, eg `[\"$rustc\", \"$rust-panic\"]`."
+                    "markdownDescription": "Problem matchers to use for `polyglot-analyzer.run` command, eg `[\"$rustc\", \"$rust-panic\"]`."
                 },
-                "rust-analyzer.server.path": {
+                "polyglot-analyzer.server.path": {
                     "type": [
                         "null",
                         "string"
                     ],
                     "scope": "machine-overridable",
                     "default": null,
-                    "markdownDescription": "Path to rust-analyzer executable (points to bundled binary by default)."
+                    "markdownDescription": "Path to polyglot-analyzer executable (points to bundled binary by default)."
                 },
-                "rust-analyzer.server.extraEnv": {
+                "polyglot-analyzer.server.extraEnv": {
                     "type": [
                         "null",
                         "object"
@@ -375,9 +375,9 @@
                         ]
                     },
                     "default": null,
-                    "markdownDescription": "Extra environment variables that will be passed to the rust-analyzer executable. Useful for passing e.g. `RA_LOG` for debugging."
+                    "markdownDescription": "Extra environment variables that will be passed to the polyglot-analyzer executable. Useful for passing e.g. `RA_LOG` for debugging."
                 },
-                "rust-analyzer.trace.server": {
+                "polyglot-analyzer.trace.server": {
                     "type": "string",
                     "scope": "window",
                     "enum": [
@@ -391,14 +391,14 @@
                         "Full log"
                     ],
                     "default": "off",
-                    "description": "Trace requests to the rust-analyzer (this is usually overly verbose and not recommended for regular users)."
+                    "description": "Trace requests to the polyglot-analyzer (this is usually overly verbose and not recommended for regular users)."
                 },
-                "rust-analyzer.trace.extension": {
+                "polyglot-analyzer.trace.extension": {
                     "description": "Enable logging of VS Code extensions itself.",
                     "type": "boolean",
                     "default": false
                 },
-                "rust-analyzer.debug.engine": {
+                "polyglot-analyzer.debug.engine": {
                     "type": "string",
                     "enum": [
                         "auto",
@@ -413,7 +413,7 @@
                         "Use [MS C++ tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)"
                     ]
                 },
-                "rust-analyzer.debug.sourceFileMap": {
+                "polyglot-analyzer.debug.sourceFileMap": {
                     "type": [
                         "object",
                         "string"
@@ -424,38 +424,38 @@
                         "/rustc/<id>": "${env:USERPROFILE}/.rustup/toolchains/<toolchain-id>/lib/rustlib/src/rust"
                     }
                 },
-                "rust-analyzer.debug.openDebugPane": {
+                "polyglot-analyzer.debug.openDebugPane": {
                     "markdownDescription": "Whether to open up the `Debug Panel` on debugging start.",
                     "type": "boolean",
                     "default": false
                 },
-                "rust-analyzer.debug.engineSettings": {
+                "polyglot-analyzer.debug.engineSettings": {
                     "type": "object",
                     "default": {},
                     "markdownDescription": "Optional settings passed to the debug engine. Example: `{ \"lldb\": { \"terminal\":\"external\"} }`"
                 },
-                "rust-analyzer.restartServerOnConfigChange": {
+                "polyglot-analyzer.restartServerOnConfigChange": {
                     "markdownDescription": "Whether to restart the server automatically when certain settings that require a restart are changed.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.typing.continueCommentsOnNewline": {
+                "polyglot-analyzer.typing.continueCommentsOnNewline": {
                     "markdownDescription": "Whether to prefix newlines after comments with the corresponding comment prefix.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.diagnostics.previewRustcOutput": {
+                "polyglot-analyzer.diagnostics.previewRustcOutput": {
                     "markdownDescription": "Whether to show the main part of the rendered rustc output of a diagnostic message.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.diagnostics.useRustcErrorCode": {
+                "polyglot-analyzer.diagnostics.useRustcErrorCode": {
                     "markdownDescription": "Whether to use the rustc error code.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.discoverProjectCommand": {
-                    "markdownDescription": "Sets the command that rust-analyzer uses to generate `rust-project.json` files. This command should only be used\n if a build system like Buck or Bazel is also in use. The command must accept files as arguments and return \n a rust-project.json over stdout.",
+                "polyglot-analyzer.discoverProjectCommand": {
+                    "markdownDescription": "Sets the command that polyglot-analyzer uses to generate `rust-project.json` files. This command should only be used\n if a build system like Buck or Bazel is also in use. The command must accept files as arguments and return \n a rust-project.json over stdout.",
                     "default": null,
                     "type": [
                         "null",
@@ -465,23 +465,23 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.showUnlinkedFileNotification": {
+                "polyglot-analyzer.showUnlinkedFileNotification": {
                     "markdownDescription": "Whether to show a notification for unlinked files asking the user to add the corresponding Cargo.toml to the linked projects setting.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.showDependenciesExplorer": {
+                "polyglot-analyzer.showDependenciesExplorer": {
                     "markdownDescription": "Whether to show the dependencies view.",
                     "default": true,
                     "type": "boolean"
                 },
                 "$generated-start": {},
-                "rust-analyzer.assist.emitMustUse": {
+                "polyglot-analyzer.assist.emitMustUse": {
                     "markdownDescription": "Whether to insert #[must_use] when generating `as_` methods\nfor enum variants.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.assist.expressionFillDefault": {
+                "polyglot-analyzer.assist.expressionFillDefault": {
                     "markdownDescription": "Placeholder expression to use for missing expressions in assists.",
                     "default": "todo",
                     "type": "string",
@@ -494,30 +494,30 @@
                         "Fill missing expressions with reasonable defaults, `new` or `default` constructors."
                     ]
                 },
-                "rust-analyzer.cachePriming.enable": {
+                "polyglot-analyzer.cachePriming.enable": {
                     "markdownDescription": "Warm up caches on project load.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.cachePriming.numThreads": {
+                "polyglot-analyzer.cachePriming.numThreads": {
                     "markdownDescription": "How many worker threads to handle priming caches. The default `0` means to pick automatically.",
                     "default": 0,
                     "type": "number",
                     "minimum": 0,
                     "maximum": 255
                 },
-                "rust-analyzer.cargo.autoreload": {
+                "polyglot-analyzer.cargo.autoreload": {
                     "markdownDescription": "Automatically refresh project info via `cargo metadata` on\n`Cargo.toml` or `.cargo/config.toml` changes.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.cargo.buildScripts.enable": {
+                "polyglot-analyzer.cargo.buildScripts.enable": {
                     "markdownDescription": "Run build scripts (`build.rs`) for more precise code analysis.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.cargo.buildScripts.invocationLocation": {
-                    "markdownDescription": "Specifies the working directory for running build scripts.\n- \"workspace\": run build scripts for a workspace in the workspace's root directory.\n    This is incompatible with `#rust-analyzer.cargo.buildScripts.invocationStrategy#` set to `once`.\n- \"root\": run build scripts in the project's root directory.\nThis config only has an effect when `#rust-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
+                "polyglot-analyzer.cargo.buildScripts.invocationLocation": {
+                    "markdownDescription": "Specifies the working directory for running build scripts.\n- \"workspace\": run build scripts for a workspace in the workspace's root directory.\n    This is incompatible with `#polyglot-analyzer.cargo.buildScripts.invocationStrategy#` set to `once`.\n- \"root\": run build scripts in the project's root directory.\nThis config only has an effect when `#polyglot-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
                     "default": "workspace",
                     "type": "string",
                     "enum": [
@@ -529,8 +529,8 @@
                         "The command will be executed in the project root."
                     ]
                 },
-                "rust-analyzer.cargo.buildScripts.invocationStrategy": {
-                    "markdownDescription": "Specifies the invocation strategy to use when running the build scripts command.\nIf `per_workspace` is set, the command will be executed for each workspace.\nIf `once` is set, the command will be executed once.\nThis config only has an effect when `#rust-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
+                "polyglot-analyzer.cargo.buildScripts.invocationStrategy": {
+                    "markdownDescription": "Specifies the invocation strategy to use when running the build scripts command.\nIf `per_workspace` is set, the command will be executed for each workspace.\nIf `once` is set, the command will be executed once.\nThis config only has an effect when `#polyglot-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
                     "default": "per_workspace",
                     "type": "string",
                     "enum": [
@@ -542,8 +542,8 @@
                         "The command will be executed once."
                     ]
                 },
-                "rust-analyzer.cargo.buildScripts.overrideCommand": {
-                    "markdownDescription": "Override the command rust-analyzer uses to run build scripts and\nbuild procedural macros. The command is required to output json\nand should therefore include `--message-format=json` or a similar\noption.\n\nBy default, a cargo invocation will be constructed for the configured\ntargets and features, with the following base command line:\n\n```bash\ncargo check --quiet --workspace --message-format=json --all-targets\n```\n.",
+                "polyglot-analyzer.cargo.buildScripts.overrideCommand": {
+                    "markdownDescription": "Override the command polyglot-analyzer uses to run build scripts and\nbuild procedural macros. The command is required to output json\nand should therefore include `--message-format=json` or a similar\noption.\n\nBy default, a cargo invocation will be constructed for the configured\ntargets and features, with the following base command line:\n\n```bash\ncargo check --quiet --workspace --message-format=json --all-targets\n```\n.",
                     "default": null,
                     "type": [
                         "null",
@@ -553,17 +553,17 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.cargo.buildScripts.useRustcWrapper": {
-                    "markdownDescription": "Use `RUSTC_WRAPPER=rust-analyzer` when running build scripts to\navoid checking unnecessary things.",
+                "polyglot-analyzer.cargo.buildScripts.useRustcWrapper": {
+                    "markdownDescription": "Use `RUSTC_WRAPPER=polyglot-analyzer` when running build scripts to\navoid checking unnecessary things.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.cargo.cfgs": {
+                "polyglot-analyzer.cargo.cfgs": {
                     "markdownDescription": "List of cfg options to enable with the given values.",
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.cargo.extraArgs": {
+                "polyglot-analyzer.cargo.extraArgs": {
                     "markdownDescription": "Extra arguments that are passed to every cargo invocation.",
                     "default": [],
                     "type": "array",
@@ -571,12 +571,12 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.cargo.extraEnv": {
+                "polyglot-analyzer.cargo.extraEnv": {
                     "markdownDescription": "Extra environment variables that will be set when running cargo, rustc\nor other commands within the workspace. Useful for setting RUSTFLAGS.",
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.cargo.features": {
+                "polyglot-analyzer.cargo.features": {
                     "markdownDescription": "List of features to activate.\n\nSet this to `\"all\"` to pass `--all-features` to cargo.",
                     "default": [],
                     "anyOf": [
@@ -597,28 +597,28 @@
                         }
                     ]
                 },
-                "rust-analyzer.cargo.noDefaultFeatures": {
+                "polyglot-analyzer.cargo.noDefaultFeatures": {
                     "markdownDescription": "Whether to pass `--no-default-features` to cargo.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.cargo.sysroot": {
-                    "markdownDescription": "Relative path to the sysroot, or \"discover\" to try to automatically find it via\n\"rustc --print sysroot\".\n\nUnsetting this disables sysroot loading.\n\nThis option does not take effect until rust-analyzer is restarted.",
+                "polyglot-analyzer.cargo.sysroot": {
+                    "markdownDescription": "Relative path to the sysroot, or \"discover\" to try to automatically find it via\n\"rustc --print sysroot\".\n\nUnsetting this disables sysroot loading.\n\nThis option does not take effect until polyglot-analyzer is restarted.",
                     "default": "discover",
                     "type": [
                         "null",
                         "string"
                     ]
                 },
-                "rust-analyzer.cargo.sysrootSrc": {
-                    "markdownDescription": "Relative path to the sysroot library sources. If left unset, this will default to\n`{cargo.sysroot}/lib/rustlib/src/rust/library`.\n\nThis option does not take effect until rust-analyzer is restarted.",
+                "polyglot-analyzer.cargo.sysrootSrc": {
+                    "markdownDescription": "Relative path to the sysroot library sources. If left unset, this will default to\n`{cargo.sysroot}/lib/rustlib/src/rust/library`.\n\nThis option does not take effect until polyglot-analyzer is restarted.",
                     "default": null,
                     "type": [
                         "null",
                         "string"
                     ]
                 },
-                "rust-analyzer.cargo.target": {
+                "polyglot-analyzer.cargo.target": {
                     "markdownDescription": "Compilation target override (target triple).",
                     "default": null,
                     "type": [
@@ -626,7 +626,7 @@
                         "string"
                     ]
                 },
-                "rust-analyzer.cargo.unsetTest": {
+                "polyglot-analyzer.cargo.unsetTest": {
                     "markdownDescription": "Unsets the implicit `#[cfg(test)]` for the specified crates.",
                     "default": [
                         "core"
@@ -636,22 +636,22 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.checkOnSave": {
+                "polyglot-analyzer.checkOnSave": {
                     "markdownDescription": "Run the check command for diagnostics on save.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.check.allTargets": {
+                "polyglot-analyzer.check.allTargets": {
                     "markdownDescription": "Check all targets and tests (`--all-targets`).",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.check.command": {
+                "polyglot-analyzer.check.command": {
                     "markdownDescription": "Cargo command to use for `cargo check`.",
                     "default": "check",
                     "type": "string"
                 },
-                "rust-analyzer.check.extraArgs": {
+                "polyglot-analyzer.check.extraArgs": {
                     "markdownDescription": "Extra arguments for `cargo check`.",
                     "default": [],
                     "type": "array",
@@ -659,13 +659,13 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.check.extraEnv": {
-                    "markdownDescription": "Extra environment variables that will be set when running `cargo check`.\nExtends `#rust-analyzer.cargo.extraEnv#`.",
+                "polyglot-analyzer.check.extraEnv": {
+                    "markdownDescription": "Extra environment variables that will be set when running `cargo check`.\nExtends `#polyglot-analyzer.cargo.extraEnv#`.",
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.check.features": {
-                    "markdownDescription": "List of features to activate. Defaults to\n`#rust-analyzer.cargo.features#`.\n\nSet to `\"all\"` to pass `--all-features` to Cargo.",
+                "polyglot-analyzer.check.features": {
+                    "markdownDescription": "List of features to activate. Defaults to\n`#polyglot-analyzer.cargo.features#`.\n\nSet to `\"all\"` to pass `--all-features` to Cargo.",
                     "default": null,
                     "anyOf": [
                         {
@@ -688,8 +688,8 @@
                         }
                     ]
                 },
-                "rust-analyzer.check.invocationLocation": {
-                    "markdownDescription": "Specifies the working directory for running checks.\n- \"workspace\": run checks for workspaces in the corresponding workspaces' root directories.\n    This falls back to \"root\" if `#rust-analyzer.cargo.checkOnSave.invocationStrategy#` is set to `once`.\n- \"root\": run checks in the project's root directory.\nThis config only has an effect when `#rust-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
+                "polyglot-analyzer.check.invocationLocation": {
+                    "markdownDescription": "Specifies the working directory for running checks.\n- \"workspace\": run checks for workspaces in the corresponding workspaces' root directories.\n    This falls back to \"root\" if `#polyglot-analyzer.cargo.checkOnSave.invocationStrategy#` is set to `once`.\n- \"root\": run checks in the project's root directory.\nThis config only has an effect when `#polyglot-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
                     "default": "workspace",
                     "type": "string",
                     "enum": [
@@ -701,8 +701,8 @@
                         "The command will be executed in the project root."
                     ]
                 },
-                "rust-analyzer.check.invocationStrategy": {
-                    "markdownDescription": "Specifies the invocation strategy to use when running the checkOnSave command.\nIf `per_workspace` is set, the command will be executed for each workspace.\nIf `once` is set, the command will be executed once.\nThis config only has an effect when `#rust-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
+                "polyglot-analyzer.check.invocationStrategy": {
+                    "markdownDescription": "Specifies the invocation strategy to use when running the checkOnSave command.\nIf `per_workspace` is set, the command will be executed for each workspace.\nIf `once` is set, the command will be executed once.\nThis config only has an effect when `#polyglot-analyzer.cargo.buildScripts.overrideCommand#`\nis set.",
                     "default": "per_workspace",
                     "type": "string",
                     "enum": [
@@ -714,16 +714,16 @@
                         "The command will be executed once."
                     ]
                 },
-                "rust-analyzer.check.noDefaultFeatures": {
-                    "markdownDescription": "Whether to pass `--no-default-features` to Cargo. Defaults to\n`#rust-analyzer.cargo.noDefaultFeatures#`.",
+                "polyglot-analyzer.check.noDefaultFeatures": {
+                    "markdownDescription": "Whether to pass `--no-default-features` to Cargo. Defaults to\n`#polyglot-analyzer.cargo.noDefaultFeatures#`.",
                     "default": null,
                     "type": [
                         "null",
                         "boolean"
                     ]
                 },
-                "rust-analyzer.check.overrideCommand": {
-                    "markdownDescription": "Override the command rust-analyzer uses instead of `cargo check` for\ndiagnostics on save. The command is required to output json and\nshould therefore include `--message-format=json` or a similar option\n(if your client supports the `colorDiagnosticOutput` experimental\ncapability, you can use `--message-format=json-diagnostic-rendered-ansi`).\n\nIf you're changing this because you're using some tool wrapping\nCargo, you might also want to change\n`#rust-analyzer.cargo.buildScripts.overrideCommand#`.\n\nIf there are multiple linked projects, this command is invoked for\neach of them, with the working directory being the project root\n(i.e., the folder containing the `Cargo.toml`).\n\nAn example command would be:\n\n```bash\ncargo check --workspace --message-format=json --all-targets\n```\n.",
+                "polyglot-analyzer.check.overrideCommand": {
+                    "markdownDescription": "Override the command polyglot-analyzer uses instead of `cargo check` for\ndiagnostics on save. The command is required to output json and\nshould therefore include `--message-format=json` or a similar option\n(if your client supports the `colorDiagnosticOutput` experimental\ncapability, you can use `--message-format=json-diagnostic-rendered-ansi`).\n\nIf you're changing this because you're using some tool wrapping\nCargo, you might also want to change\n`#polyglot-analyzer.cargo.buildScripts.overrideCommand#`.\n\nIf there are multiple linked projects, this command is invoked for\neach of them, with the working directory being the project root\n(i.e., the folder containing the `Cargo.toml`).\n\nAn example command would be:\n\n```bash\ncargo check --workspace --message-format=json --all-targets\n```\n.",
                     "default": null,
                     "type": [
                         "null",
@@ -733,8 +733,8 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.check.targets": {
-                    "markdownDescription": "Check for specific targets. Defaults to `#rust-analyzer.cargo.target#` if empty.\n\nCan be a single target, e.g. `\"x86_64-unknown-linux-gnu\"` or a list of targets, e.g.\n`[\"aarch64-apple-darwin\", \"x86_64-apple-darwin\"]`.\n\nAliased as `\"checkOnSave.targets\"`.",
+                "polyglot-analyzer.check.targets": {
+                    "markdownDescription": "Check for specific targets. Defaults to `#polyglot-analyzer.cargo.target#` if empty.\n\nCan be a single target, e.g. `\"x86_64-unknown-linux-gnu\"` or a list of targets, e.g.\n`[\"aarch64-apple-darwin\", \"x86_64-apple-darwin\"]`.\n\nAliased as `\"checkOnSave.targets\"`.",
                     "default": null,
                     "anyOf": [
                         {
@@ -751,17 +751,17 @@
                         }
                     ]
                 },
-                "rust-analyzer.completion.autoimport.enable": {
+                "polyglot-analyzer.completion.autoimport.enable": {
                     "markdownDescription": "Toggles the additional completions that automatically add imports when completed.\nNote that your client must specify the `additionalTextEdits` LSP client capability to truly have this feature enabled.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.completion.autoself.enable": {
+                "polyglot-analyzer.completion.autoself.enable": {
                     "markdownDescription": "Toggles the additional completions that automatically show method calls and field accesses\nwith `self` prefixed to them when inside a method.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.completion.callable.snippets": {
+                "polyglot-analyzer.completion.callable.snippets": {
                     "markdownDescription": "Whether to add parenthesis and argument snippets when completing function.",
                     "default": "fill_arguments",
                     "type": "string",
@@ -776,7 +776,7 @@
                         "Do no snippet completions for callables."
                     ]
                 },
-                "rust-analyzer.completion.limit": {
+                "polyglot-analyzer.completion.limit": {
                     "markdownDescription": "Maximum number of completions to return. If `None`, the limit is infinite.",
                     "default": null,
                     "type": [
@@ -785,17 +785,17 @@
                     ],
                     "minimum": 0
                 },
-                "rust-analyzer.completion.postfix.enable": {
+                "polyglot-analyzer.completion.postfix.enable": {
                     "markdownDescription": "Whether to show postfix snippets like `dbg`, `if`, `not`, etc.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.completion.privateEditable.enable": {
+                "polyglot-analyzer.completion.privateEditable.enable": {
                     "markdownDescription": "Enables completions of private items and fields that are defined in the current workspace even if they are not visible at the current position.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.completion.snippets.custom": {
+                "polyglot-analyzer.completion.snippets.custom": {
                     "markdownDescription": "Custom completion snippets.",
                     "default": {
                         "Arc::new": {
@@ -840,8 +840,8 @@
                     },
                     "type": "object"
                 },
-                "rust-analyzer.diagnostics.disabled": {
-                    "markdownDescription": "List of rust-analyzer diagnostics to disable.",
+                "polyglot-analyzer.diagnostics.disabled": {
+                    "markdownDescription": "List of polyglot-analyzer diagnostics to disable.",
                     "default": [],
                     "type": "array",
                     "items": {
@@ -849,22 +849,22 @@
                     },
                     "uniqueItems": true
                 },
-                "rust-analyzer.diagnostics.enable": {
-                    "markdownDescription": "Whether to show native rust-analyzer diagnostics.",
+                "polyglot-analyzer.diagnostics.enable": {
+                    "markdownDescription": "Whether to show native polyglot-analyzer diagnostics.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.diagnostics.experimental.enable": {
-                    "markdownDescription": "Whether to show experimental rust-analyzer diagnostics that might\nhave more false positives than usual.",
+                "polyglot-analyzer.diagnostics.experimental.enable": {
+                    "markdownDescription": "Whether to show experimental polyglot-analyzer diagnostics that might\nhave more false positives than usual.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.diagnostics.remapPrefix": {
+                "polyglot-analyzer.diagnostics.remapPrefix": {
                     "markdownDescription": "Map of prefixes to be substituted when parsing diagnostic file paths.\nThis should be the reverse mapping of what is passed to `rustc` as `--remap-path-prefix`.",
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.diagnostics.warningsAsHint": {
+                "polyglot-analyzer.diagnostics.warningsAsHint": {
                     "markdownDescription": "List of warnings that should be displayed with hint severity.\n\nThe warnings will be indicated by faded text or three dots in code\nand will not show up in the `Problems Panel`.",
                     "default": [],
                     "type": "array",
@@ -872,7 +872,7 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.diagnostics.warningsAsInfo": {
+                "polyglot-analyzer.diagnostics.warningsAsInfo": {
                     "markdownDescription": "List of warnings that should be displayed with info severity.\n\nThe warnings will be indicated by a blue squiggly underline in code\nand a blue icon in the `Problems Panel`.",
                     "default": [],
                     "type": "array",
@@ -880,15 +880,15 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.files.excludeDirs": {
-                    "markdownDescription": "These directories will be ignored by rust-analyzer. They are\nrelative to the workspace root, and globs are not supported. You may\nalso need to add the folders to Code's `files.watcherExclude`.",
+                "polyglot-analyzer.files.excludeDirs": {
+                    "markdownDescription": "These directories will be ignored by polyglot-analyzer. They are\nrelative to the workspace root, and globs are not supported. You may\nalso need to add the folders to Code's `files.watcherExclude`.",
                     "default": [],
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
-                "rust-analyzer.files.watcher": {
+                "polyglot-analyzer.files.watcher": {
                     "markdownDescription": "Controls file watching implementation.",
                     "default": "client",
                     "type": "string",
@@ -901,77 +901,77 @@
                         "Use server-side file watching"
                     ]
                 },
-                "rust-analyzer.highlightRelated.breakPoints.enable": {
+                "polyglot-analyzer.highlightRelated.breakPoints.enable": {
                     "markdownDescription": "Enables highlighting of related references while the cursor is on `break`, `loop`, `while`, or `for` keywords.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.highlightRelated.closureCaptures.enable": {
+                "polyglot-analyzer.highlightRelated.closureCaptures.enable": {
                     "markdownDescription": "Enables highlighting of all captures of a closure while the cursor is on the `|` or move keyword of a closure.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.highlightRelated.exitPoints.enable": {
+                "polyglot-analyzer.highlightRelated.exitPoints.enable": {
                     "markdownDescription": "Enables highlighting of all exit points while the cursor is on any `return`, `?`, `fn`, or return type arrow (`->`).",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.highlightRelated.references.enable": {
+                "polyglot-analyzer.highlightRelated.references.enable": {
                     "markdownDescription": "Enables highlighting of related references while the cursor is on any identifier.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.highlightRelated.yieldPoints.enable": {
+                "polyglot-analyzer.highlightRelated.yieldPoints.enable": {
                     "markdownDescription": "Enables highlighting of all break points for a loop or block context while the cursor is on any `async` or `await` keywords.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.actions.debug.enable": {
-                    "markdownDescription": "Whether to show `Debug` action. Only applies when\n`#rust-analyzer.hover.actions.enable#` is set.",
+                "polyglot-analyzer.hover.actions.debug.enable": {
+                    "markdownDescription": "Whether to show `Debug` action. Only applies when\n`#polyglot-analyzer.hover.actions.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.actions.enable": {
+                "polyglot-analyzer.hover.actions.enable": {
                     "markdownDescription": "Whether to show HoverActions in Rust files.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.actions.gotoTypeDef.enable": {
-                    "markdownDescription": "Whether to show `Go to Type Definition` action. Only applies when\n`#rust-analyzer.hover.actions.enable#` is set.",
+                "polyglot-analyzer.hover.actions.gotoTypeDef.enable": {
+                    "markdownDescription": "Whether to show `Go to Type Definition` action. Only applies when\n`#polyglot-analyzer.hover.actions.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.actions.implementations.enable": {
-                    "markdownDescription": "Whether to show `Implementations` action. Only applies when\n`#rust-analyzer.hover.actions.enable#` is set.",
+                "polyglot-analyzer.hover.actions.implementations.enable": {
+                    "markdownDescription": "Whether to show `Implementations` action. Only applies when\n`#polyglot-analyzer.hover.actions.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.actions.references.enable": {
-                    "markdownDescription": "Whether to show `References` action. Only applies when\n`#rust-analyzer.hover.actions.enable#` is set.",
+                "polyglot-analyzer.hover.actions.references.enable": {
+                    "markdownDescription": "Whether to show `References` action. Only applies when\n`#polyglot-analyzer.hover.actions.enable#` is set.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.actions.run.enable": {
-                    "markdownDescription": "Whether to show `Run` action. Only applies when\n`#rust-analyzer.hover.actions.enable#` is set.",
+                "polyglot-analyzer.hover.actions.run.enable": {
+                    "markdownDescription": "Whether to show `Run` action. Only applies when\n`#polyglot-analyzer.hover.actions.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.documentation.enable": {
+                "polyglot-analyzer.hover.documentation.enable": {
                     "markdownDescription": "Whether to show documentation on hover.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.documentation.keywords.enable": {
-                    "markdownDescription": "Whether to show keyword hover popups. Only applies when\n`#rust-analyzer.hover.documentation.enable#` is set.",
+                "polyglot-analyzer.hover.documentation.keywords.enable": {
+                    "markdownDescription": "Whether to show keyword hover popups. Only applies when\n`#polyglot-analyzer.hover.documentation.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.links.enable": {
+                "polyglot-analyzer.hover.links.enable": {
                     "markdownDescription": "Use markdown syntax for links on hover.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.memoryLayout.alignment": {
+                "polyglot-analyzer.hover.memoryLayout.alignment": {
                     "markdownDescription": "How to render the align information in a memory layout hover.",
                     "default": "hexadecimal",
                     "anyOf": [
@@ -993,12 +993,12 @@
                         }
                     ]
                 },
-                "rust-analyzer.hover.memoryLayout.enable": {
+                "polyglot-analyzer.hover.memoryLayout.enable": {
                     "markdownDescription": "Whether to show memory layout data on hover.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.hover.memoryLayout.niches": {
+                "polyglot-analyzer.hover.memoryLayout.niches": {
                     "markdownDescription": "How to render the niche information in a memory layout hover.",
                     "default": false,
                     "type": [
@@ -1006,7 +1006,7 @@
                         "boolean"
                     ]
                 },
-                "rust-analyzer.hover.memoryLayout.offset": {
+                "polyglot-analyzer.hover.memoryLayout.offset": {
                     "markdownDescription": "How to render the offset information in a memory layout hover.",
                     "default": "hexadecimal",
                     "anyOf": [
@@ -1028,7 +1028,7 @@
                         }
                     ]
                 },
-                "rust-analyzer.hover.memoryLayout.size": {
+                "polyglot-analyzer.hover.memoryLayout.size": {
                     "markdownDescription": "How to render the size information in a memory layout hover.",
                     "default": "both",
                     "anyOf": [
@@ -1050,12 +1050,12 @@
                         }
                     ]
                 },
-                "rust-analyzer.imports.granularity.enforce": {
-                    "markdownDescription": "Whether to enforce the import granularity setting for all files. If set to false rust-analyzer will try to keep import styles consistent per file.",
+                "polyglot-analyzer.imports.granularity.enforce": {
+                    "markdownDescription": "Whether to enforce the import granularity setting for all files. If set to false polyglot-analyzer will try to keep import styles consistent per file.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.imports.granularity.group": {
+                "polyglot-analyzer.imports.granularity.group": {
                     "markdownDescription": "How imports should be grouped into use statements.",
                     "default": "crate",
                     "type": "string",
@@ -1072,22 +1072,22 @@
                         "Flatten imports so that each has its own use statement."
                     ]
                 },
-                "rust-analyzer.imports.group.enable": {
-                    "markdownDescription": "Group inserted imports by the [following order](https://rust-analyzer.github.io/manual.html#auto-import). Groups are separated by newlines.",
+                "polyglot-analyzer.imports.group.enable": {
+                    "markdownDescription": "Group inserted imports by the [following order](https://polyglot-analyzer.github.io/manual.html#auto-import). Groups are separated by newlines.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.imports.merge.glob": {
+                "polyglot-analyzer.imports.merge.glob": {
                     "markdownDescription": "Whether to allow import insertion to merge new imports into single path glob imports like `use std::fmt::*;`.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.imports.prefer.no.std": {
+                "polyglot-analyzer.imports.prefer.no.std": {
                     "markdownDescription": "Prefer to unconditionally use imports of the core and alloc crate, over the std crate.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.imports.prefix": {
+                "polyglot-analyzer.imports.prefix": {
                     "markdownDescription": "The path structure for newly inserted paths to use.",
                     "default": "plain",
                     "type": "string",
@@ -1102,33 +1102,33 @@
                         "Force import paths to be absolute by always starting them with `crate` or the extern crate name they come from."
                     ]
                 },
-                "rust-analyzer.inlayHints.bindingModeHints.enable": {
+                "polyglot-analyzer.inlayHints.bindingModeHints.enable": {
                     "markdownDescription": "Whether to show inlay type hints for binding modes.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.chainingHints.enable": {
+                "polyglot-analyzer.inlayHints.chainingHints.enable": {
                     "markdownDescription": "Whether to show inlay type hints for method chains.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.closingBraceHints.enable": {
+                "polyglot-analyzer.inlayHints.closingBraceHints.enable": {
                     "markdownDescription": "Whether to show inlay hints after a closing `}` to indicate what item it belongs to.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.closingBraceHints.minLines": {
+                "polyglot-analyzer.inlayHints.closingBraceHints.minLines": {
                     "markdownDescription": "Minimum number of lines required before the `}` until the hint is shown (set to 0 or 1\nto always show them).",
                     "default": 25,
                     "type": "integer",
                     "minimum": 0
                 },
-                "rust-analyzer.inlayHints.closureCaptureHints.enable": {
+                "polyglot-analyzer.inlayHints.closureCaptureHints.enable": {
                     "markdownDescription": "Whether to show inlay hints for closure captures.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.closureReturnTypeHints.enable": {
+                "polyglot-analyzer.inlayHints.closureReturnTypeHints.enable": {
                     "markdownDescription": "Whether to show inlay type hints for return types of closures.",
                     "default": "never",
                     "type": "string",
@@ -1143,7 +1143,7 @@
                         "Only show type hints for return types of closures with blocks."
                     ]
                 },
-                "rust-analyzer.inlayHints.closureStyle": {
+                "polyglot-analyzer.inlayHints.closureStyle": {
                     "markdownDescription": "Closure notation in type and chaining inlay hints.",
                     "default": "impl_fn",
                     "type": "string",
@@ -1160,7 +1160,7 @@
                         "`hide`: Shows `...` for every closure type"
                     ]
                 },
-                "rust-analyzer.inlayHints.discriminantHints.enable": {
+                "polyglot-analyzer.inlayHints.discriminantHints.enable": {
                     "markdownDescription": "Whether to show enum variant discriminant hints.",
                     "default": "never",
                     "type": "string",
@@ -1175,7 +1175,7 @@
                         "Only show discriminant hints on fieldless enum variants."
                     ]
                 },
-                "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": {
+                "polyglot-analyzer.inlayHints.expressionAdjustmentHints.enable": {
                     "markdownDescription": "Whether to show inlay hints for type adjustments.",
                     "default": "never",
                     "type": "string",
@@ -1190,12 +1190,12 @@
                         "Only show auto borrow and dereference adjustment hints."
                     ]
                 },
-                "rust-analyzer.inlayHints.expressionAdjustmentHints.hideOutsideUnsafe": {
+                "polyglot-analyzer.inlayHints.expressionAdjustmentHints.hideOutsideUnsafe": {
                     "markdownDescription": "Whether to hide inlay hints for type adjustments outside of `unsafe` blocks.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.expressionAdjustmentHints.mode": {
+                "polyglot-analyzer.inlayHints.expressionAdjustmentHints.mode": {
                     "markdownDescription": "Whether to show inlay hints as postfix ops (`.*` instead of `*`, etc).",
                     "default": "prefix",
                     "type": "string",
@@ -1212,7 +1212,7 @@
                         "Show prefix or postfix depending on which uses less parenthesis, preferring postfix."
                     ]
                 },
-                "rust-analyzer.inlayHints.lifetimeElisionHints.enable": {
+                "polyglot-analyzer.inlayHints.lifetimeElisionHints.enable": {
                     "markdownDescription": "Whether to show inlay type hints for elided lifetimes in function signatures.",
                     "default": "never",
                     "type": "string",
@@ -1227,12 +1227,12 @@
                         "Only show lifetime elision hints if a return type is involved."
                     ]
                 },
-                "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": {
+                "polyglot-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": {
                     "markdownDescription": "Whether to prefer using parameter names as the name for elided lifetime hints if possible.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.maxLength": {
+                "polyglot-analyzer.inlayHints.maxLength": {
                     "markdownDescription": "Maximum length for inlay hints. Set to null to have an unlimited length.",
                     "default": 25,
                     "type": [
@@ -1241,13 +1241,13 @@
                     ],
                     "minimum": 0
                 },
-                "rust-analyzer.inlayHints.parameterHints.enable": {
+                "polyglot-analyzer.inlayHints.parameterHints.enable": {
                     "markdownDescription": "Whether to show function parameter name inlay hints at the call\nsite.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.reborrowHints.enable": {
-                    "markdownDescription": "Whether to show inlay hints for compiler inserted reborrows.\nThis setting is deprecated in favor of #rust-analyzer.inlayHints.expressionAdjustmentHints.enable#.",
+                "polyglot-analyzer.inlayHints.reborrowHints.enable": {
+                    "markdownDescription": "Whether to show inlay hints for compiler inserted reborrows.\nThis setting is deprecated in favor of #polyglot-analyzer.inlayHints.expressionAdjustmentHints.enable#.",
                     "default": "never",
                     "type": "string",
                     "enum": [
@@ -1261,72 +1261,72 @@
                         "Only show mutable reborrow hints."
                     ]
                 },
-                "rust-analyzer.inlayHints.renderColons": {
+                "polyglot-analyzer.inlayHints.renderColons": {
                     "markdownDescription": "Whether to render leading colons for type hints, and trailing colons for parameter hints.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.typeHints.enable": {
+                "polyglot-analyzer.inlayHints.typeHints.enable": {
                     "markdownDescription": "Whether to show inlay type hints for variables.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.typeHints.hideClosureInitialization": {
-                    "markdownDescription": "Whether to hide inlay type hints for `let` statements that initialize to a closure.\nOnly applies to closures with blocks, same as `#rust-analyzer.inlayHints.closureReturnTypeHints.enable#`.",
+                "polyglot-analyzer.inlayHints.typeHints.hideClosureInitialization": {
+                    "markdownDescription": "Whether to hide inlay type hints for `let` statements that initialize to a closure.\nOnly applies to closures with blocks, same as `#polyglot-analyzer.inlayHints.closureReturnTypeHints.enable#`.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.inlayHints.typeHints.hideNamedConstructor": {
+                "polyglot-analyzer.inlayHints.typeHints.hideNamedConstructor": {
                     "markdownDescription": "Whether to hide inlay type hints for constructors.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.interpret.tests": {
+                "polyglot-analyzer.interpret.tests": {
                     "markdownDescription": "Enables the experimental support for interpreting tests.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.joinLines.joinAssignments": {
+                "polyglot-analyzer.joinLines.joinAssignments": {
                     "markdownDescription": "Join lines merges consecutive declaration and initialization of an assignment.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.joinLines.joinElseIf": {
+                "polyglot-analyzer.joinLines.joinElseIf": {
                     "markdownDescription": "Join lines inserts else between consecutive ifs.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.joinLines.removeTrailingComma": {
+                "polyglot-analyzer.joinLines.removeTrailingComma": {
                     "markdownDescription": "Join lines removes trailing commas.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.joinLines.unwrapTrivialBlock": {
+                "polyglot-analyzer.joinLines.unwrapTrivialBlock": {
                     "markdownDescription": "Join lines unwraps trivial blocks.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.debug.enable": {
-                    "markdownDescription": "Whether to show `Debug` lens. Only applies when\n`#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.debug.enable": {
+                    "markdownDescription": "Whether to show `Debug` lens. Only applies when\n`#polyglot-analyzer.lens.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.enable": {
+                "polyglot-analyzer.lens.enable": {
                     "markdownDescription": "Whether to show CodeLens in Rust files.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.forceCustomCommands": {
+                "polyglot-analyzer.lens.forceCustomCommands": {
                     "markdownDescription": "Internal config: use custom client-side commands even when the\nclient doesn't set the corresponding capability.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.implementations.enable": {
-                    "markdownDescription": "Whether to show `Implementations` lens. Only applies when\n`#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.implementations.enable": {
+                    "markdownDescription": "Whether to show `Implementations` lens. Only applies when\n`#polyglot-analyzer.lens.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.location": {
+                "polyglot-analyzer.lens.location": {
                     "markdownDescription": "Where to render annotations.",
                     "default": "above_name",
                     "type": "string",
@@ -1339,32 +1339,32 @@
                         "Render annotations above the whole item, including documentation comments and attributes."
                     ]
                 },
-                "rust-analyzer.lens.references.adt.enable": {
-                    "markdownDescription": "Whether to show `References` lens for Struct, Enum, and Union.\nOnly applies when `#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.references.adt.enable": {
+                    "markdownDescription": "Whether to show `References` lens for Struct, Enum, and Union.\nOnly applies when `#polyglot-analyzer.lens.enable#` is set.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.references.enumVariant.enable": {
-                    "markdownDescription": "Whether to show `References` lens for Enum Variants.\nOnly applies when `#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.references.enumVariant.enable": {
+                    "markdownDescription": "Whether to show `References` lens for Enum Variants.\nOnly applies when `#polyglot-analyzer.lens.enable#` is set.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.references.method.enable": {
-                    "markdownDescription": "Whether to show `Method References` lens. Only applies when\n`#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.references.method.enable": {
+                    "markdownDescription": "Whether to show `Method References` lens. Only applies when\n`#polyglot-analyzer.lens.enable#` is set.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.references.trait.enable": {
-                    "markdownDescription": "Whether to show `References` lens for Trait.\nOnly applies when `#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.references.trait.enable": {
+                    "markdownDescription": "Whether to show `References` lens for Trait.\nOnly applies when `#polyglot-analyzer.lens.enable#` is set.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.lens.run.enable": {
-                    "markdownDescription": "Whether to show `Run` lens. Only applies when\n`#rust-analyzer.lens.enable#` is set.",
+                "polyglot-analyzer.lens.run.enable": {
+                    "markdownDescription": "Whether to show `Run` lens. Only applies when\n`#polyglot-analyzer.lens.enable#` is set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.linkedProjects": {
+                "polyglot-analyzer.linkedProjects": {
                     "markdownDescription": "Disable project auto-discovery in favor of explicitly specified set\nof projects.\n\nElements must be paths pointing to `Cargo.toml`,\n`rust-project.json`, or JSON objects in `rust-project.json` format.",
                     "default": [],
                     "type": "array",
@@ -1375,8 +1375,8 @@
                         ]
                     }
                 },
-                "rust-analyzer.lru.capacity": {
-                    "markdownDescription": "Number of syntax trees rust-analyzer keeps in memory. Defaults to 128.",
+                "polyglot-analyzer.lru.capacity": {
+                    "markdownDescription": "Number of syntax trees polyglot-analyzer keeps in memory. Defaults to 128.",
                     "default": null,
                     "type": [
                         "null",
@@ -1384,17 +1384,17 @@
                     ],
                     "minimum": 0
                 },
-                "rust-analyzer.lru.query.capacities": {
+                "polyglot-analyzer.lru.query.capacities": {
                     "markdownDescription": "Sets the LRU capacity of the specified queries.",
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.notifications.cargoTomlNotFound": {
+                "polyglot-analyzer.notifications.cargoTomlNotFound": {
                     "markdownDescription": "Whether to show `can't find Cargo.toml` error message.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.numThreads": {
+                "polyglot-analyzer.numThreads": {
                     "markdownDescription": "How many worker threads in the main loop. The default `null` means to pick automatically.",
                     "default": null,
                     "type": [
@@ -1403,22 +1403,22 @@
                     ],
                     "minimum": 0
                 },
-                "rust-analyzer.procMacro.attributes.enable": {
-                    "markdownDescription": "Expand attribute macros. Requires `#rust-analyzer.procMacro.enable#` to be set.",
+                "polyglot-analyzer.procMacro.attributes.enable": {
+                    "markdownDescription": "Expand attribute macros. Requires `#polyglot-analyzer.procMacro.enable#` to be set.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.procMacro.enable": {
-                    "markdownDescription": "Enable support for procedural macros, implies `#rust-analyzer.cargo.buildScripts.enable#`.",
+                "polyglot-analyzer.procMacro.enable": {
+                    "markdownDescription": "Enable support for procedural macros, implies `#polyglot-analyzer.cargo.buildScripts.enable#`.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.procMacro.ignored": {
+                "polyglot-analyzer.procMacro.ignored": {
                     "markdownDescription": "These proc-macros will be ignored when trying to expand them.\n\nThis config takes a map of crate names with the exported proc-macro names to ignore as values.",
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.procMacro.server": {
+                "polyglot-analyzer.procMacro.server": {
                     "markdownDescription": "Internal config, path to proc-macro server executable.",
                     "default": null,
                     "type": [
@@ -1426,12 +1426,12 @@
                         "string"
                     ]
                 },
-                "rust-analyzer.references.excludeImports": {
+                "polyglot-analyzer.references.excludeImports": {
                     "markdownDescription": "Exclude imports from find-all-references.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.runnables.command": {
+                "polyglot-analyzer.runnables.command": {
                     "markdownDescription": "Command to be executed instead of 'cargo' for runnables.",
                     "default": null,
                     "type": [
@@ -1439,7 +1439,7 @@
                         "string"
                     ]
                 },
-                "rust-analyzer.runnables.extraArgs": {
+                "polyglot-analyzer.runnables.extraArgs": {
                     "markdownDescription": "Additional arguments to be passed to cargo for runnables such as\ntests or binaries. For example, it may be `--release`.",
                     "default": [],
                     "type": "array",
@@ -1447,15 +1447,15 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.rustc.source": {
-                    "markdownDescription": "Path to the Cargo.toml of the rust compiler workspace, for usage in rustc_private\nprojects, or \"discover\" to try to automatically find it if the `rustc-dev` component\nis installed.\n\nAny project which uses rust-analyzer with the rustcPrivate\ncrates must set `[package.metadata.rust-analyzer] rustc_private=true` to use it.\n\nThis option does not take effect until rust-analyzer is restarted.",
+                "polyglot-analyzer.rustc.source": {
+                    "markdownDescription": "Path to the Cargo.toml of the rust compiler workspace, for usage in rustc_private\nprojects, or \"discover\" to try to automatically find it if the `rustc-dev` component\nis installed.\n\nAny project which uses polyglot-analyzer with the rustcPrivate\ncrates must set `[package.metadata.polyglot-analyzer] rustc_private=true` to use it.\n\nThis option does not take effect until polyglot-analyzer is restarted.",
                     "default": null,
                     "type": [
                         "null",
                         "string"
                     ]
                 },
-                "rust-analyzer.rustfmt.extraArgs": {
+                "polyglot-analyzer.rustfmt.extraArgs": {
                     "markdownDescription": "Additional arguments to `rustfmt`.",
                     "default": [],
                     "type": "array",
@@ -1463,8 +1463,8 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.rustfmt.overrideCommand": {
-                    "markdownDescription": "Advanced option, fully override the command rust-analyzer uses for\nformatting. This should be the equivalent of `rustfmt` here, and\nnot that of `cargo fmt`. The file contents will be passed on the\nstandard input and the formatted result will be read from the\nstandard output.",
+                "polyglot-analyzer.rustfmt.overrideCommand": {
+                    "markdownDescription": "Advanced option, fully override the command polyglot-analyzer uses for\nformatting. This should be the equivalent of `rustfmt` here, and\nnot that of `cargo fmt`. The file contents will be passed on the\nstandard input and the formatted result will be read from the\nstandard output.",
                     "default": null,
                     "type": [
                         "null",
@@ -1474,52 +1474,52 @@
                         "type": "string"
                     }
                 },
-                "rust-analyzer.rustfmt.rangeFormatting.enable": {
+                "polyglot-analyzer.rustfmt.rangeFormatting.enable": {
                     "markdownDescription": "Enables the use of rustfmt's unstable range formatting command for the\n`textDocument/rangeFormatting` request. The rustfmt option is unstable and only\navailable on a nightly build.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.doc.comment.inject.enable": {
-                    "markdownDescription": "Inject additional highlighting into doc comments.\n\nWhen enabled, rust-analyzer will highlight rust source in doc comments as well as intra\ndoc links.",
+                "polyglot-analyzer.semanticHighlighting.doc.comment.inject.enable": {
+                    "markdownDescription": "Inject additional highlighting into doc comments.\n\nWhen enabled, polyglot-analyzer will highlight rust source in doc comments as well as intra\ndoc links.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.nonStandardTokens": {
+                "polyglot-analyzer.semanticHighlighting.nonStandardTokens": {
                     "markdownDescription": "Whether the server is allowed to emit non-standard tokens and modifiers.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.operator.enable": {
-                    "markdownDescription": "Use semantic tokens for operators.\n\nWhen disabled, rust-analyzer will emit semantic tokens only for operator tokens when\nthey are tagged with modifiers.",
+                "polyglot-analyzer.semanticHighlighting.operator.enable": {
+                    "markdownDescription": "Use semantic tokens for operators.\n\nWhen disabled, polyglot-analyzer will emit semantic tokens only for operator tokens when\nthey are tagged with modifiers.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.operator.specialization.enable": {
-                    "markdownDescription": "Use specialized semantic tokens for operators.\n\nWhen enabled, rust-analyzer will emit special token types for operator tokens instead\nof the generic `operator` token type.",
+                "polyglot-analyzer.semanticHighlighting.operator.specialization.enable": {
+                    "markdownDescription": "Use specialized semantic tokens for operators.\n\nWhen enabled, polyglot-analyzer will emit special token types for operator tokens instead\nof the generic `operator` token type.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.punctuation.enable": {
-                    "markdownDescription": "Use semantic tokens for punctuation.\n\nWhen disabled, rust-analyzer will emit semantic tokens only for punctuation tokens when\nthey are tagged with modifiers or have a special role.",
+                "polyglot-analyzer.semanticHighlighting.punctuation.enable": {
+                    "markdownDescription": "Use semantic tokens for punctuation.\n\nWhen disabled, polyglot-analyzer will emit semantic tokens only for punctuation tokens when\nthey are tagged with modifiers or have a special role.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.punctuation.separate.macro.bang": {
-                    "markdownDescription": "When enabled, rust-analyzer will emit a punctuation semantic token for the `!` of macro\ncalls.",
+                "polyglot-analyzer.semanticHighlighting.punctuation.separate.macro.bang": {
+                    "markdownDescription": "When enabled, polyglot-analyzer will emit a punctuation semantic token for the `!` of macro\ncalls.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.punctuation.specialization.enable": {
-                    "markdownDescription": "Use specialized semantic tokens for punctuation.\n\nWhen enabled, rust-analyzer will emit special token types for punctuation tokens instead\nof the generic `punctuation` token type.",
+                "polyglot-analyzer.semanticHighlighting.punctuation.specialization.enable": {
+                    "markdownDescription": "Use specialized semantic tokens for punctuation.\n\nWhen enabled, polyglot-analyzer will emit special token types for punctuation tokens instead\nof the generic `punctuation` token type.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.semanticHighlighting.strings.enable": {
+                "polyglot-analyzer.semanticHighlighting.strings.enable": {
                     "markdownDescription": "Use semantic tokens for strings.\n\nIn some editors (e.g. vscode) semantic tokens override other highlighting grammars.\nBy disabling semantic tokens for strings, other grammars can be used to highlight\ntheir contents.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.signatureInfo.detail": {
+                "polyglot-analyzer.signatureInfo.detail": {
                     "markdownDescription": "Show full signature of the callable. Only shows parameters if disabled.",
                     "default": "full",
                     "type": "string",
@@ -1532,17 +1532,17 @@
                         "Show only the parameters."
                     ]
                 },
-                "rust-analyzer.signatureInfo.documentation.enable": {
+                "polyglot-analyzer.signatureInfo.documentation.enable": {
                     "markdownDescription": "Show documentation.",
                     "default": true,
                     "type": "boolean"
                 },
-                "rust-analyzer.typing.autoClosingAngleBrackets.enable": {
+                "polyglot-analyzer.typing.autoClosingAngleBrackets.enable": {
                     "markdownDescription": "Whether to insert closing angle brackets when typing an opening angle bracket of a generic argument list.",
                     "default": false,
                     "type": "boolean"
                 },
-                "rust-analyzer.workspace.symbol.search.kind": {
+                "polyglot-analyzer.workspace.symbol.search.kind": {
                     "markdownDescription": "Workspace symbol search kind.",
                     "default": "only_types",
                     "type": "string",
@@ -1555,13 +1555,13 @@
                         "Search for all symbols kinds."
                     ]
                 },
-                "rust-analyzer.workspace.symbol.search.limit": {
+                "polyglot-analyzer.workspace.symbol.search.limit": {
                     "markdownDescription": "Limits the number of items returned from a workspace symbol search (Defaults to 128).\nSome clients like vs-code issue new searches on result filtering and don't require all results to be returned in the initial search.\nOther clients requires all results upfront and might require a higher limit.",
                     "default": 128,
                     "type": "integer",
                     "minimum": 0
                 },
-                "rust-analyzer.workspace.symbol.search.scope": {
+                "polyglot-analyzer.workspace.symbol.search.scope": {
                     "markdownDescription": "Workspace symbol search scope.",
                     "default": "workspace",
                     "type": "string",
@@ -1998,94 +1998,94 @@
         "menus": {
             "commandPalette": [
                 {
-                    "command": "rust-analyzer.syntaxTree",
+                    "command": "polyglot-analyzer.syntaxTree",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.viewHir",
+                    "command": "polyglot-analyzer.viewHir",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.viewFileText",
+                    "command": "polyglot-analyzer.viewFileText",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.expandMacro",
+                    "command": "polyglot-analyzer.expandMacro",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.matchingBrace",
+                    "command": "polyglot-analyzer.matchingBrace",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.parentModule",
+                    "command": "polyglot-analyzer.parentModule",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.joinLines",
+                    "command": "polyglot-analyzer.joinLines",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.run",
+                    "command": "polyglot-analyzer.run",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.debug",
+                    "command": "polyglot-analyzer.debug",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.newDebugConfig",
+                    "command": "polyglot-analyzer.newDebugConfig",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.analyzerStatus",
+                    "command": "polyglot-analyzer.analyzerStatus",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.memoryUsage",
+                    "command": "polyglot-analyzer.memoryUsage",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.reloadWorkspace",
+                    "command": "polyglot-analyzer.reloadWorkspace",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.restartServer",
+                    "command": "polyglot-analyzer.restartServer",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.onEnter",
+                    "command": "polyglot-analyzer.onEnter",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.ssr",
+                    "command": "polyglot-analyzer.ssr",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.serverVersion",
+                    "command": "polyglot-analyzer.serverVersion",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.openDocs",
+                    "command": "polyglot-analyzer.openDocs",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.openCargoToml",
+                    "command": "polyglot-analyzer.openCargoToml",
                     "when": "inRustProject"
                 },
                 {
-                    "command": "rust-analyzer.viewMemoryLayout",
+                    "command": "polyglot-analyzer.viewMemoryLayout",
                     "when": "inRustProject"
                 }
             ],
             "editor/context": [
                 {
-                    "command": "rust-analyzer.peekTests",
+                    "command": "polyglot-analyzer.peekTests",
                     "when": "inRustProject && editorTextFocus && editorLangId == rust",
                     "group": "navigation@1000"
                 },
                 {
-                    "command": "rust-analyzer.openDocs",
+                    "command": "polyglot-analyzer.openDocs",
                     "when": "inRustProject && editorTextFocus && editorLangId == rust",
                     "group": "navigation@1001"
                 }
@@ -2096,7 +2096,7 @@
                 {
                     "id": "rustDependencies",
                     "name": "Rust Dependencies",
-                    "when": "inRustProject && config.rust-analyzer.showDependenciesExplorer"
+                    "when": "inRustProject && config.polyglot-analyzer.showDependenciesExplorer"
                 }
             ]
         },

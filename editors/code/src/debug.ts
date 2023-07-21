@@ -116,7 +116,7 @@ async function getDebugConfiguration(
     const wsFolder = path.normalize(workspace.uri.fsPath);
     const workspaceQualifier = isMultiFolderWorkspace ? `:${workspace.name}` : "";
     function simplifyPath(p: string): string {
-        // see https://github.com/rust-lang/rust-analyzer/pull/5513#issuecomment-663458818 for why this is needed
+        // see https://github.com/rust-lang/polyglot-analyzer/pull/5513#issuecomment-663458818 for why this is needed
         return path.normalize(p).replace(wsFolder, "${workspaceFolder" + workspaceQualifier + "}");
     }
 
@@ -142,7 +142,7 @@ async function getDebugConfiguration(
     }
 
     if (debugConfig.name === "run binary") {
-        // The LSP side: crates\rust-analyzer\src\main_loop\handlers.rs,
+        // The LSP side: crates\polyglot-analyzer\src\main_loop\handlers.rs,
         // fn to_lsp_runnable(...) with RunnableKind::Bin
         debugConfig.name = `run ${path.basename(executable)}`;
     }

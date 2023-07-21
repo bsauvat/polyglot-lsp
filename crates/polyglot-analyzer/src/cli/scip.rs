@@ -28,7 +28,7 @@ impl flags::Scip {
         let mut cargo_config = CargoConfig::default();
         cargo_config.sysroot = Some(RustLibSource::Discover);
 
-        let no_progress = &|s| (eprintln!("rust-analyzer: Loading {s}"));
+        let no_progress = &|s| (eprintln!("polyglot-analyzer: Loading {s}"));
         let load_cargo_config = LoadCargoConfig {
             load_out_dirs_from_check: true,
             with_proc_macro_server: ProcMacroServerChoice::Sysroot,
@@ -50,7 +50,7 @@ impl flags::Scip {
         let metadata = scip_types::Metadata {
             version: scip_types::ProtocolVersion::UnspecifiedProtocolVersion.into(),
             tool_info: Some(scip_types::ToolInfo {
-                name: "rust-analyzer".to_owned(),
+                name: "polyglot-analyzer".to_owned(),
                 version: "0.1".to_owned(),
                 arguments: vec![],
                 special_fields: Default::default(),
@@ -247,7 +247,7 @@ fn token_to_symbol(token: &TokenStaticData) -> Option<scip_types::Symbol> {
         .collect();
 
     Some(scip_types::Symbol {
-        scheme: "rust-analyzer".into(),
+        scheme: "polyglot-analyzer".into(),
         package: Some(scip_types::Package {
             manager: "cargo".to_string(),
             name: package_name,
