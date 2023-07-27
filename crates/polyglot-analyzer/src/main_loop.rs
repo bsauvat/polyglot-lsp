@@ -121,7 +121,6 @@ impl GlobalState {
         {
             self.fetch_workspaces(cause, force_crate_graph_reload);
         }
-
         while let Some(event) = self.next_event(&inbox) {
             if matches!(
                 &event,
@@ -145,6 +144,11 @@ impl GlobalState {
                         language: None,
                         scheme: None,
                         pattern: Some("**/*.rs".into()),
+                    },
+                    lsp_types::DocumentFilter {
+                        language: None,
+                        scheme: None,
+                        pattern: Some("**/*.java".into()),
                     },
                     lsp_types::DocumentFilter {
                         language: None,

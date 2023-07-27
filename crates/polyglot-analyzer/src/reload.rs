@@ -406,6 +406,7 @@ impl GlobalState {
                         root.include.into_iter().flat_map(|it| {
                             [
                                 format!("{it}/**/*.rs"),
+                                format!("{it}/**/*.java"),
                                 format!("{it}/**/Cargo.toml"),
                                 format!("{it}/**/Cargo.lock"),
                             ]
@@ -624,6 +625,7 @@ impl GlobalState {
 pub(crate) fn should_refresh_for_change(path: &AbsPath, change_kind: ChangeKind) -> bool {
     const IMPLICIT_TARGET_FILES: &[&str] = &["build.rs", "src/main.rs", "src/lib.rs"];
     const IMPLICIT_TARGET_DIRS: &[&str] = &["src/bin", "examples", "tests", "benches"];
+    return true; // TODO rafiner le predicat
 
     let file_name = match path.file_name().unwrap_or_default().to_str() {
         Some(it) => it,
