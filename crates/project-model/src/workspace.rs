@@ -97,6 +97,10 @@ pub enum ProjectWorkspace {
         /// `rustc --print cfg`.
         rustc_cfg: Vec<CfgFlag>,
     },
+    //todo
+    PolyJson {
+
+    }
 }
 
 impl fmt::Debug for ProjectWorkspace {
@@ -142,6 +146,7 @@ impl fmt::Debug for ProjectWorkspace {
                 .field("sysroot", &sysroot.is_ok())
                 .field("n_rustc_cfg", &rustc_cfg.len())
                 .finish(),
+                ProjectWorkspace::PolyJson {  } => todo!()
         }
     }
 }
@@ -360,6 +365,7 @@ impl ProjectWorkspace {
             tracing::info!(src_root = %sysroot.src_root(), root = %sysroot.root(), "Using sysroot");
         }
         let rustc_cfg = rustc_cfg::get(None, None, &Default::default());
+        panic!("{:?}", detached_files);
         Ok(ProjectWorkspace::DetachedFiles { files: detached_files, sysroot, rustc_cfg })
     }
 
