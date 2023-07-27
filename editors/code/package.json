@@ -64,8 +64,7 @@
         "typescript": "^5.1.6"
     },
     "activationEvents": [
-        "workspaceContains:*/Cargo.toml",
-        "workspaceContains:*/rust-project.json"
+        "workspaceContains:*/polyglot-project.json"
     ],
     "main": "./out/main",
     "contributes": {
@@ -1642,6 +1641,16 @@
                 "aliases": [
                     "Rust",
                     "rs"
+                ],
+                "configuration": "language-configuration.json"
+            },
+            {
+                "id": "java",
+                "extensions": [
+                    ".java"
+                ],
+                "aliases": [
+                    "Java"
                 ],
                 "configuration": "language-configuration.json"
             }
