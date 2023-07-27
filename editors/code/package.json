@@ -1653,6 +1653,26 @@
                     "Java"
                 ],
                 "configuration": "language-configuration.json"
+            },
+            {
+                "id": "javascript",
+                "extensions": [
+                    ".js"
+                ],
+                "aliases": [
+                    "JavaScript"
+                ],
+                "configuration": "language-configuration.json"
+            },
+            {
+                "id": "python",
+                "extensions": [
+                    ".py"
+                ],
+                "aliases": [
+                    "Python"
+                ],
+                "configuration": "language-configuration.json"
             }
         ],
         "grammars": [
