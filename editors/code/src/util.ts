@@ -68,7 +68,7 @@ export function isRustDocument(document: vscode.TextDocument): document is RustD
     // by allowing only `file` schemes
     // unfortunately extensions that use diff views not always set this
     // to something different than 'file' (see ongoing bug: #4608)
-    return (document.languageId === "rust" || document.languageId === "java") && document.uri.scheme === "file";
+    return (document.languageId === "rust" || document.languageId === "java" || document.languageId === "javascript" || document.languageId === "python") && document.uri.scheme === "file";
 }
 
 export function isCargoTomlDocument(document: vscode.TextDocument): document is RustDocument {

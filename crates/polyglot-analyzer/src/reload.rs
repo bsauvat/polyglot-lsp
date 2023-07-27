@@ -407,6 +407,8 @@ impl GlobalState {
                             [
                                 format!("{it}/**/*.rs"),
                                 format!("{it}/**/*.java"),
+                                format!("{it}/**/*.js"),
+                                format!("{it}/**/*.py"),
                                 format!("{it}/**/Cargo.toml"),
                                 format!("{it}/**/Cargo.lock"),
                             ]

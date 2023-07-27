@@ -153,6 +153,16 @@ impl GlobalState {
                     lsp_types::DocumentFilter {
                         language: None,
                         scheme: None,
+                        pattern: Some("**/*.js".into()),
+                    },
+                    lsp_types::DocumentFilter {
+                        language: None,
+                        scheme: None,
+                        pattern: Some("**/*.py".into()),
+                    },
+                    lsp_types::DocumentFilter {
+                        language: None,
+                        scheme: None,
                         pattern: Some("**/Cargo.toml".into()),
                     },
                     lsp_types::DocumentFilter {
