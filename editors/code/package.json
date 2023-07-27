@@ -1652,7 +1652,7 @@
                 "aliases": [
                     "Java"
                 ],
-                "configuration": "language-configuration.json"
+                "configuration": "language-configuration-java.json"
             },
             {
                 "id": "javascript",
@@ -1662,7 +1662,7 @@
                 "aliases": [
                     "JavaScript"
                 ],
-                "configuration": "language-configuration.json"
+                "configuration": "language-configuration-js.json"
             },
             {
                 "id": "python",
@@ -1672,7 +1672,7 @@
                 "aliases": [
                     "Python"
                 ],
-                "configuration": "language-configuration.json"
+                "configuration": "language-configuration-py.json"
             }
         ],
         "grammars": [
