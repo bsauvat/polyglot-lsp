@@ -21,6 +21,7 @@ mod manifest_path;
 mod cargo_workspace;
 mod cfg_flag;
 mod project_json;
+mod polyjson_project;
 mod sysroot;
 mod workspace;
 mod rustc_cfg;
@@ -49,6 +50,7 @@ pub use crate::{
     },
     manifest_path::ManifestPath,
     project_json::{ProjectJson, ProjectJsonData},
+    polyjson_project::{PolyJsonProject, PolyJsonData},
     sysroot::Sysroot,
     workspace::{CfgOverrides, PackageRoot, ProjectWorkspace},
 };
@@ -56,6 +58,7 @@ pub use crate::{
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Ord, PartialOrd)]
 pub enum ProjectManifest {
     ProjectJson(ManifestPath),
+    PolyJsonProject(ManifestPath),
     CargoToml(ManifestPath),
 }
 
@@ -151,6 +154,9 @@ impl fmt::Display for ProjectManifest {
         match self {
             ProjectManifest::ProjectJson(it) | ProjectManifest::CargoToml(it) => {
                 fmt::Display::fmt(&it, f)
+            }
+            ProjectManifest::PolyJsonProject(it) => {
+                write!(f, "{} (polyglot)", it.display())
             }
         }
     }

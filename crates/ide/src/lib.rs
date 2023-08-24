@@ -318,6 +318,15 @@ impl Analysis {
         self.with_db(|db| syntax_tree::syntax_tree(db, file_id, text_range))
     }
 
+    pub fn polyglot_syntax_tree(
+        &self,
+        file_id: FileId,
+        lang: polyglot_ast::util::Language,
+        text_range: Option<TextRange>,
+    ) -> Cancellable<String> {
+        self.with_db(|db| syntax_tree::polyglot_syntax_tree(db, file_id, lang, text_range))
+    }
+
     pub fn view_hir(&self, position: FilePosition) -> Cancellable<String> {
         self.with_db(|db| view_hir::view_hir(db, position))
     }
