@@ -210,6 +210,8 @@ impl GlobalState {
         let _p = profile::span("GlobalState::handle_event");
 
         let event_dbg_msg = format!("{event:?}");
+        tracing::error!("{:?} handle_event({})", loop_start, event_dbg_msg);
+        tracing::trace!("{:?} handle_event({})", loop_start, event_dbg_msg);
         tracing::debug!("{:?} handle_event({})", loop_start, event_dbg_msg);
         if tracing::enabled!(tracing::Level::INFO) {
             let task_queue_len = self.task_pool.handle.len();
