@@ -143,6 +143,7 @@ impl GlobalState {
         for ws in self.workspaces.iter() {
             let (ProjectWorkspace::Cargo { sysroot, .. }
             | ProjectWorkspace::Json { sysroot, .. }
+            | ProjectWorkspace::PolyJson { sysroot, .. }
             | ProjectWorkspace::DetachedFiles { sysroot, .. }) = ws;
             match sysroot {
                 Err(None) => (),
@@ -606,6 +607,8 @@ impl GlobalState {
                                 _ => None,
                             }
                         }
+                        ProjectWorkspace::PolyJson { project, sysroot, rustc_cfg, toolchain }=>
+                        todo!("flycheck for polyglot projects"),
                         ProjectWorkspace::DetachedFiles { .. } => None,
                     })
                     .map(|(id, root)| {

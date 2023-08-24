@@ -16,6 +16,7 @@ use semver::Version;
 use stdx::always;
 use triomphe::Arc;
 
+//TODO BASTIEN : add polyjson project ?
 use crate::{
     build_scripts::BuildScriptOutput,
     cargo_workspace::{DepKind, PackageData, RustLibSource},
@@ -24,7 +25,7 @@ use crate::{
     rustc_cfg,
     sysroot::SysrootCrate,
     target_data_layout, utf8_stdout, CargoConfig, CargoWorkspace, InvocationStrategy, ManifestPath,
-    Package, ProjectJson, ProjectManifest, Sysroot, TargetData, TargetKind, WorkspaceBuildScripts,
+    Package, ProjectJson, PolyJsonProject, ProjectManifest, Sysroot, TargetData, TargetKind, WorkspaceBuildScripts
 };
 
 /// A set of cfg-overrides per crate.
@@ -97,10 +98,13 @@ pub enum ProjectWorkspace {
         /// `rustc --print cfg`.
         rustc_cfg: Vec<CfgFlag>,
     },
-    //todo
-    //PolyJson {
-
-    //}
+    /// Project workspace was specified using a `rust-project.json` file that supports multiple languages.
+    PolyJson {
+        project: PolyJsonProject,
+        sysroot: Result<Sysroot, Option<String>>,
+        rustc_cfg: Vec<CfgFlag>,
+        toolchain: Option<Version>,
+    },
 }
 
 impl fmt::Debug for ProjectWorkspace {
@@ -146,7 +150,16 @@ impl fmt::Debug for ProjectWorkspace {
                 .field("sysroot", &sysroot.is_ok())
                 .field("n_rustc_cfg", &rustc_cfg.len())
                 .finish(),
-                //ProjectWorkspace::PolyJson {  } => todo!()
+            ProjectWorkspace::PolyJson { project, sysroot, rustc_cfg, toolchain } => {
+                let mut debug_struct = f.debug_struct("PolyJson");
+                debug_struct.field("n_crates", &project.n_crates());
+                if let Ok(sysroot) = sysroot {
+                    debug_struct.field("n_sysroot_crates", &sysroot.crates().len());
+                }
+                debug_struct.field("toolchain", &toolchain);
+                debug_struct.field("n_rustc_cfg", &rustc_cfg.len());
+                debug_struct.finish()
+            }
         }
     }
 }
@@ -180,6 +193,7 @@ impl ProjectWorkspace {
             )
         };
         let res = match manifest {
+            //TODO BASTIEN : Do the same thing for PolyJsonProject ?
             ProjectManifest::ProjectJson(project_json) => {
                 let file = fs::read_to_string(&project_json)
                     .with_context(|| format!("Failed to read json file {project_json}"))?;
@@ -195,6 +209,32 @@ impl ProjectWorkspace {
                     toolchain,
                 )
             }
+            ProjectManifest::PolyJsonProject(poly_json) => {
+                let file = fs::read_to_string(&poly_json)
+                    .with_context(|| format!("Failed to read json file {poly_json}"))?;
+                let data = serde_json::from_str(&file)
+                    .with_context(|| format!("Failed to deserialize json file {poly_json}"))?;
+                let project_location = poly_json.parent().to_path_buf();
+                let toolchain = version(&*project_location, toolchain::rustc(), "rustc ")?;
+                let poly_json = PolyJsonProject::new(&project_location, data);
+                // TODO ProjectWorkspace
+                ProjectWorkspace::load_poly_json(
+                    poly_json,
+                    config.target.as_deref(),
+                    &config.extra_env,
+                    toolchain,
+                )
+                
+                /*
+                ProjectWorkspace::load_poly_json(
+                    poly_json,
+                    config.target.as_deref(),
+                    &config.extra_env,
+                    toolchain,
+                )
+                */
+            }
+
             ProjectManifest::CargoToml(cargo_toml) => {
                 let toolchain = version(cargo_toml.parent(), toolchain::cargo(), "cargo ")?;
                 let meta = CargoWorkspace::fetch_metadata(
@@ -343,6 +383,39 @@ impl ProjectWorkspace {
         ProjectWorkspace::Json { project: project_json, sysroot, rustc_cfg, toolchain }
     }
 
+    //TODO implem load_poly_json
+    pub fn load_poly_json(
+        poly_json: PolyJsonProject,
+        target: Option<&str>,
+        extra_env: &FxHashMap<String, String>,
+        toolchain: Option<Version>,
+    ) -> ProjectWorkspace {
+        let sysroot = match (poly_json.sysroot.clone(), poly_json.sysroot_src.clone()) {
+            (Some(sysroot), Some(sysroot_src)) => Ok(Sysroot::load(sysroot, sysroot_src)),
+            (Some(sysroot), None) => {
+                // assume sysroot is structured like rustup's and guess `sysroot_src`
+                let sysroot_src =
+                    sysroot.join("lib").join("rustlib").join("src").join("rust").join("library");
+                Ok(Sysroot::load(sysroot, sysroot_src))
+            }
+            (None, Some(sysroot_src)) => {
+                // assume sysroot is structured like rustup's and guess `sysroot`
+                let mut sysroot = sysroot_src.clone();
+                for _ in 0..5 {
+                    sysroot.pop();
+                }
+                Ok(Sysroot::load(sysroot, sysroot_src))
+            }
+            (None, None) => Err(None),
+        };
+        if let Ok(sysroot) = &sysroot {
+            tracing::info!(src_root = %sysroot.src_root(), root = %sysroot.root(), "Using sysroot");
+        }
+
+        let rustc_cfg = rustc_cfg::get(None, target, extra_env);
+        ProjectWorkspace::PolyJson { project: poly_json, sysroot, rustc_cfg, toolchain }
+    }
+
     pub fn load_detached_files(
         detached_files: Vec<AbsPathBuf>,
         config: &CargoConfig,
@@ -383,6 +456,10 @@ impl ProjectWorkspace {
                     })
             }
             ProjectWorkspace::Json { .. } | ProjectWorkspace::DetachedFiles { .. } => {
+                Ok(WorkspaceBuildScripts::default())
+            }
+            //TODO Bastien: implem ProjectWorkspace::PolyJson
+            ProjectWorkspace::PolyJson { .. } => {
                 Ok(WorkspaceBuildScripts::default())
             }
         }
@@ -442,6 +519,7 @@ impl ProjectWorkspace {
             ProjectWorkspace::Cargo { cargo, .. } => Some(cargo.workspace_root()),
             ProjectWorkspace::Json { project, .. } => Some(project.path()),
             ProjectWorkspace::DetachedFiles { .. } => None,
+            ProjectWorkspace::PolyJson { .. } => todo!("workspace_definition_path for polyjson"),
         }
     }
 
@@ -449,6 +527,7 @@ impl ProjectWorkspace {
         match self {
             ProjectWorkspace::Cargo { sysroot: Ok(sysroot), .. }
             | ProjectWorkspace::Json { sysroot: Ok(sysroot), .. }
+            | ProjectWorkspace::PolyJson { sysroot: Ok(sysroot), .. }
             | ProjectWorkspace::DetachedFiles { sysroot: Ok(sysroot), .. } => {
                 let standalone_server_name =
                     format!("rust-analyzer-proc-macro-srv{}", std::env::consts::EXE_SUFFIX);
@@ -474,6 +553,7 @@ impl ProjectWorkspace {
                 "cannot find proc-macro-srv, the workspace `{}` is missing a sysroot",
                 project.path()
             )),
+            ProjectWorkspace::PolyJson { .. } => todo!("find_sysroot_proc_macro_srv for polyjson"),
         }
     }
 
@@ -502,6 +582,8 @@ impl ProjectWorkspace {
                 .into_iter()
                 .chain(mk_sysroot(sysroot.as_ref(), Some(project.path())))
                 .collect::<Vec<_>>(),
+            // todo for ProjectWorkspace::PolyJson
+            ProjectWorkspace::PolyJson { .. } => todo!("to_roots for polyjson"),
             ProjectWorkspace::Cargo {
                 cargo,
                 sysroot,
@@ -578,6 +660,7 @@ impl ProjectWorkspace {
                 let sysroot_package_len = sysroot.as_ref().map_or(0, |it| it.crates().len());
                 sysroot_package_len + project.n_crates()
             }
+            ProjectWorkspace::PolyJson { .. } => todo!("n_packages for polyjson"),
             ProjectWorkspace::Cargo { cargo, sysroot, rustc, .. } => {
                 let rustc_package_len = rustc.as_ref().map_or(0, |(it, _)| it.packages().len());
                 let sysroot_package_len = sysroot.as_ref().map_or(0, |it| it.crates().len());
@@ -609,6 +692,7 @@ impl ProjectWorkspace {
                     toolchain.as_ref().and_then(|it| ReleaseChannel::from_str(it.pre.as_str())),
                 )
             }
+            ProjectWorkspace::PolyJson { .. } => todo!("to_crate_graph for polyjson"),
             ProjectWorkspace::Cargo {
                 cargo,
                 sysroot,

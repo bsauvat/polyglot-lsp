@@ -23,7 +23,7 @@ use ide_db::{
 use itertools::Itertools;
 use lsp_types::{ClientCapabilities, MarkupKind};
 use project_model::{
-    CargoConfig, CargoFeatures, ProjectJson, ProjectJsonData, ProjectManifest, RustLibSource,
+    CargoConfig, CargoFeatures, ProjectJson, PolyJsonProject, ProjectJsonData, ProjectManifest, RustLibSource,
 };
 use rustc_hash::{FxHashMap, FxHashSet};
 use serde::{de::DeserializeOwned, Deserialize};
@@ -894,6 +894,7 @@ impl Config {
                     .iter()
                     .filter(
                         |(ProjectManifest::ProjectJson(path)
+                        | ProjectManifest::PolyJsonProject(path)
                          | ProjectManifest::CargoToml(path))| {
                             !exclude_dirs.iter().any(|p| path.starts_with(p))
                         },

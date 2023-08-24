@@ -270,6 +270,8 @@ fn run_flycheck(state: &mut GlobalState, vfs_path: VfsPath) -> bool {
                 project_model::ProjectWorkspace::Json { project, .. } => {
                     project.crates().any(|(c, _)| crate_ids.iter().any(|&crate_id| crate_id == c))
                 }
+                project_model::ProjectWorkspace::PolyJson { project, sysroot, rustc_cfg, toolchain } => 
+                todo!("polyjson flycheck"),
                 project_model::ProjectWorkspace::DetachedFiles { .. } => false,
             });
 

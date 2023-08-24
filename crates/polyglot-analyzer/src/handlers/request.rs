@@ -135,11 +135,23 @@ pub(crate) fn handle_syntax_tree(
     snap: GlobalStateSnapshot,
     params: lsp_ext::SyntaxTreeParams,
 ) -> anyhow::Result<String> {
+    eprintln!("PASSAGE DANS LE HANDLE SYNTAX TREE");
     let _p = profile::span("handle_syntax_tree");
     let id = from_proto::file_id(&snap, &params.text_document.uri)?;
+    //deletion of ? in the 2 lines below because not authorized to use it
+    let binding = from_proto::abs_path(&params.text_document.uri)?;
+    let ext: &str = binding
+        .extension()
+        .unwrap()
+        .to_str()
+        .ok_or_else(|| anyhow::anyhow!("Failed to convert extension to &str"))?;
+    let lang = polyglot_ast::util::file_extension_to_enum(ext).map_err(|x|anyhow::format_err!(x))?;
     let line_index = snap.file_line_index(id)?;
     let text_range = params.range.and_then(|r| from_proto::text_range(&line_index, r).ok());
-    let res = snap.analysis.syntax_tree(id, text_range)?;
+    eprintln!("id: {:?}", id);
+    eprintln!("lang: {:?}", lang);
+    eprintln!("text range: {:?}", text_range);
+    let res = snap.analysis.polyglot_syntax_tree(id, lang, text_range)?;
     Ok(res)
 }
 
@@ -1621,6 +1633,7 @@ pub(crate) fn handle_open_docs(
         ProjectWorkspace::Cargo { cargo, sysroot, .. } => Some((cargo, sysroot.as_ref().ok())),
         ProjectWorkspace::Json { .. } => None,
         ProjectWorkspace::DetachedFiles { .. } => None,
+        ProjectWorkspace::PolyJson { .. } => None,
     });
 
     let (cargo, sysroot) = match ws_and_sysroot {

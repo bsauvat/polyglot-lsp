@@ -466,6 +466,7 @@ impl GlobalStateSnapshot {
                 cargo.target_by_root(path).map(|it| (cargo, it))
             }
             ProjectWorkspace::Json { .. } => None,
+            ProjectWorkspace::PolyJson { .. } => None,
             ProjectWorkspace::DetachedFiles { .. } => None,
         })
     }

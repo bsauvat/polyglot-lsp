@@ -60,7 +60,7 @@ export function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export type RustDocument = vscode.TextDocument & { languageId: "rust" };
+export type RustDocument = vscode.TextDocument & { languageId: "rust" | "java" | "python" | "javascript" };
 export type RustEditor = vscode.TextEditor & { document: RustDocument };
 
 export function isRustDocument(document: vscode.TextDocument): document is RustDocument {

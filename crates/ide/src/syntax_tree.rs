@@ -22,8 +22,10 @@ pub(crate) fn syntax_tree(
     file_id: FileId,
     text_range: Option<TextRange>,
 ) -> String {
+    // TODO QLD: big question: how to get the syntax tree of a file?
     let parse = db.parse(file_id);
     if let Some(text_range) = text_range {
+        // TODO QLD: covering_element can be impl with polyglotast
         let node = match parse.tree().syntax().covering_element(text_range) {
             NodeOrToken::Node(node) => node,
             NodeOrToken::Token(token) => {
@@ -36,7 +38,36 @@ pub(crate) fn syntax_tree(
 
         format!("{node:#?}")
     } else {
+        // TODO QLD: polyglotast should be easily serializable as a tree
         format!("{:#?}", parse.tree().syntax())
+    }
+}
+
+pub(crate) fn polyglot_syntax_tree(
+    db: &RootDatabase,
+    file_id: FileId,
+    lang: polyglot_ast::util::Language,
+    text_range: Option<TextRange>,
+) -> String {
+    // TODO QLD: big question: how to get the syntax tree of a file?
+    let parse = db.polyglot_parse(file_id, lang);
+    if let Some(text_range) = text_range {
+        // TODO QLD: covering_element can be impl with polyglotast
+        todo!()
+        // let node = match parse.tree().syntax().covering_element(text_range) {
+        //     NodeOrToken::Node(node) => node,
+        //     NodeOrToken::Token(token) => {
+        //         if let Some(tree) = syntax_tree_for_string(&token, text_range) {
+        //             return tree;
+        //         }
+        //         token.parent().unwrap()
+        //     }
+        // };
+
+        // format!("{node:#?}")
+    } else {
+        // TODO QLD: polyglotast should be easily serializable as a tree
+        format!("{:#?}", parse.tree())
     }
 }
 
