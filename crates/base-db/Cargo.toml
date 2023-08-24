@@ -27,3 +27,9 @@ syntax.workspace = true
 test-utils.workspace = true
 tt.workspace = true
 vfs.workspace = true
+
+polyglot_ast.workspace = true
+# = { git = "https://github.com/bsauvat/polyglot_ast", version = "0.1.0", branch = "main" }
+
+#polyglot_ast = {git = "https://github.com/bsauvat/polyglot_ast", version = "0.1.0", branch = "main"}
+#polyglot_ast = { git = "https://github.com/bsauvat/polyglot_ast", rev = "a2d0393e907013caf77a12845cf003851b7862d7" }
