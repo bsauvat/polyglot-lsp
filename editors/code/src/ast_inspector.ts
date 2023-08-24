@@ -39,7 +39,10 @@ export class AstInspector implements vscode.HoverProvider, vscode.DefinitionProv
         ctx.pushExtCleanup(
             vscode.languages.registerHoverProvider({ scheme: "polyglot-analyzer" }, this),
         );
-        ctx.pushExtCleanup(vscode.languages.registerDefinitionProvider({ language: "rust" }, this));
+        ctx.pushExtCleanup(vscode.languages.registerDefinitionProvider({ language: "rust" }, this)); // TODO QLD ?
+        ctx.pushExtCleanup(vscode.languages.registerDefinitionProvider({ language: "javascript" }, this)); // TODO QLD ?
+        ctx.pushExtCleanup(vscode.languages.registerDefinitionProvider({ language: "java" }, this)); // TODO QLD ?
+        ctx.pushExtCleanup(vscode.languages.registerDefinitionProvider({ language: "python" }, this)); // TODO QLD ?
         vscode.workspace.onDidCloseTextDocument(
             this.onDidCloseTextDocument,
             this,
