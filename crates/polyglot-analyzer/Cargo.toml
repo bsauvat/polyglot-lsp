@@ -72,6 +72,9 @@ toolchain.workspace = true
 vfs-notify.workspace = true
 vfs.workspace = true
 
+polyglot_ast.workspace = true
+#= { git = "https://github.com/bsauvat/polyglot_ast", version = "0.1.0", branch = "main" }
+
 [target.'cfg(windows)'.dependencies]
 winapi = "0.3.9"
 
