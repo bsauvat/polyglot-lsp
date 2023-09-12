@@ -145,12 +145,30 @@ pub(crate) fn handle_syntax_tree(
         .unwrap()
         .to_str()
         .ok_or_else(|| anyhow::anyhow!("Failed to convert extension to &str"))?;
-    let lang = polyglot_ast::util::file_extension_to_enum(ext).map_err(|x|anyhow::format_err!(x))?;
+    let lang =
+        polyglot_ast::util::file_extension_to_enum(ext).map_err(|x| anyhow::format_err!(x))?;
     let line_index = snap.file_line_index(id)?;
     let text_range = params.range.and_then(|r| from_proto::text_range(&line_index, r).ok());
     eprintln!("id: {:?}", id);
     eprintln!("lang: {:?}", lang);
     eprintln!("text range: {:?}", text_range);
+    let root = snap.analysis.polyglot_tree(id, lang)?;
+    // TODO let global = GlobalContext::new(pwd, root);
+    // loop {
+    //     let Some(root) = global.next_patial_polyglot_tree() else break;
+        if let Some(v) = root.compute_polyglot_stuff() {
+            for x in v {
+                dbg!(x);
+                // TODO x.get_path() or get_code() and get_lang()
+                // let handle = if global.get(x) else {
+                    // TODO parse
+                // }
+                // TODO global.add_polyglot_tree(todo!(),todo!());
+            }
+            // TODO global.set_solved(root);
+        }
+    // }
+    // TODO compute polyglot syntax tree of global context (in replqcement to next line)
     let res = snap.analysis.polyglot_syntax_tree(id, lang, text_range)?;
     Ok(res)
 }

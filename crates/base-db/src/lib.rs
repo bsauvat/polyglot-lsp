@@ -77,7 +77,7 @@ pub trait SourceDatabase: FileLoader + std::fmt::Debug {
         &self,
         file_id: FileId,
         lang: polyglot_ast::util::Language,
-    ) -> polyglot_ast::polyglot_tree::ParsingResult;
+    ) -> polyglot_ast::RawParseResult;
 
     /// The crate graph.
     #[salsa::input]
@@ -98,10 +98,11 @@ fn polyglot_parse_query(
     db: &dyn SourceDatabase,
     file_id: FileId,
     lang: polyglot_ast::util::Language,
-) -> polyglot_ast::polyglot_tree::ParsingResult {
+) -> polyglot_ast::RawParseResult {
     let _p = profile::span("parse_query").detail(|| format!("{file_id:?}"));
     let text = db.file_text(file_id);
-    polyglot_ast::PolyglotTree::parse(text.to_string().into(), lang)
+    // polyglot_ast::PolyglotTree::parse(text.to_string().into(), lang)
+    polyglot_ast::parse(text.to_string().into(), lang)
 }
 
 /// We don't want to give HIR knowledge of source roots, hence we extract these
