@@ -71,9 +71,32 @@ pub(crate) fn polyglot_syntax_tree(
         let zipper = polyglot_ast::PolyglotZipper::new(result.as_ref().unwrap());
         //call method process_impl from polyglot_processor.rs to process the tree
         let tree_printer = &mut polyglot_ast::TreePrinter::new();
-        tree_printer.process_impl( zipper);
+        tree_printer.process_impl(zipper);
         tree_printer.get_result().to_string()
 
+        //format!("{:#?}", parse.tree())
+    }
+}
+
+//new impl for polyglot_syntax_tree_global
+pub(crate) fn polyglot_syntax_tree_global(
+    db: &RootDatabase,
+    global: polyglot_ast::context::GlobalContext,
+    text_range: Option<TextRange>,
+) -> String {
+    if let Some(text_range) = text_range {
+        todo!("combine else banch with thus branch in polyglot_syntax_tree")
+    } else {
+        // TODO QLD: polyglotast should be easily serializable as a tree
+        let mut result = global.root_tree();
+        let zipper = polyglot_ast::PolyglotZipper::new(result.as_ref().unwrap());
+        //call method process_impl from polyglot_processor.rs to process the tree
+        let tree_printer =
+            &mut polyglot_ast::polyglot_tree::polyglot_processor::TreePrinterGlobal::new(
+                std::sync::Arc::new(global),
+            );
+        tree_printer.process_impl(zipper);
+        tree_printer.get_result().to_string()
         //format!("{:#?}", parse.tree())
     }
 }

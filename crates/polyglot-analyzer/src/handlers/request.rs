@@ -153,23 +153,47 @@ pub(crate) fn handle_syntax_tree(
     eprintln!("lang: {:?}", lang);
     eprintln!("text range: {:?}", text_range);
     let root = snap.analysis.polyglot_tree(id, lang)?;
-    // TODO let global = GlobalContext::new(pwd, root);
-    // loop {
-    //     let Some(root) = global.next_patial_polyglot_tree() else break;
-        if let Some(v) = root.compute_polyglot_stuff() {
+    // let root_dir: &std::path::Path = snap.config.root_path().as_ref();
+    let mut global = polyglot_ast::context::GlobalContext::new(params.text_document.uri.path().into() , root);
+    loop {
+        let Some((h,partial)) = global.next_partial_polyglot_tree() 
+        else {
+            break;
+        };
+        if let Some(v) = partial.compute_polyglot_stuff() {
             for x in v {
-                dbg!(x);
+                dbg!(&x);
                 // TODO x.get_path() or get_code() and get_lang()
-                // let handle = if global.get(x) else {
-                    // TODO parse
-                // }
-                // TODO global.add_polyglot_tree(todo!(),todo!());
+                let lang = x.lang();
+                if global.get_raw(&h).is_none(){
+                    if let Some(code) = x.source() {
+                        // snap.analysis.polyglot_tree(id, lang)
+                        //todo!("snap.analysis.polyglot_tree() but without file id but an Arc<str> ie. code variable")
+                        let source = x.source().unwrap();
+                        let pos = x.position();
+                        let parsed = snap.analysis.polyglot_tree_source(source.to_string(), lang).unwrap();
+                        let handle = (lang,source).into();
+                        let h2= global.add_polyglot_tree(handle,parsed);
+                        // TODO global.add_use(h, pos, h2);
+                    } else {
+                        // TODO
+                        // let path = x.path().unwrap();
+                        // let url = lsp_types::Url::from_file_path(path).unwrap();
+                        // let id = from_proto::file_id(&snap, &url)?;
+                        // let parsed = snap.analysis.polyglot_tree(id, lang).unwrap();
+                        // let handle = (lang,path).into();
+                        // global.add_polyglot_tree(handle,parsed);
+                    };
+                } else {
+                    // TODO
+                };
             }
-            // TODO global.set_solved(root);
-        }
-    // }
-    // TODO compute polyglot syntax tree of global context (in replqcement to next line)
-    let res = snap.analysis.polyglot_syntax_tree(id, lang, text_range)?;
+            global.set_solved(h);
+        };
+    }
+    // // TODO compute polyglot syntax tree of global context (in replacement to next line)
+    let res = snap.analysis.polyglot_syntax_tree_global(global, text_range)?;
+    // let res = snap.analysis.polyglot_syntax_tree(id, lang, text_range)?;
     Ok(res)
 }
 

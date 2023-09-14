@@ -327,6 +327,23 @@ impl Analysis {
         self.with_db(|db| syntax_tree::polyglot_syntax_tree(db, file_id, lang, text_range))
     }
 
+    //polyglot syntax tree function using globalcontext
+    pub fn polyglot_syntax_tree_global(
+        &self,
+        global: polyglot_ast::context::GlobalContext,
+        text_range: Option<TextRange>,
+    ) -> Cancellable<String> {
+        self.with_db(|db| syntax_tree::polyglot_syntax_tree_global(db, global, text_range))
+    }
+
+    pub fn polyglot_tree_source(
+        &self,
+        source: String,
+        lang: polyglot_ast::util::Language,
+    ) -> Cancellable<polyglot_ast::RawParseResult> {
+        self.with_db(|db| db.polyglot_parse_source(source, lang))
+    }
+
     pub fn polyglot_tree(
         &self,
         file_id: FileId,

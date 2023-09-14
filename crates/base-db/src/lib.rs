@@ -79,6 +79,14 @@ pub trait SourceDatabase: FileLoader + std::fmt::Debug {
         lang: polyglot_ast::util::Language,
     ) -> polyglot_ast::RawParseResult;
 
+    // Parses the file into the syntax tree.
+    #[salsa::invoke(polyglot_parse_source_query)]
+    fn polyglot_parse_source(
+        &self,
+        source: String,
+        lang: polyglot_ast::util::Language,
+    ) -> polyglot_ast::RawParseResult;
+
     /// The crate graph.
     #[salsa::input]
     fn crate_graph(&self) -> Arc<CrateGraph>;
@@ -99,10 +107,22 @@ fn polyglot_parse_query(
     file_id: FileId,
     lang: polyglot_ast::util::Language,
 ) -> polyglot_ast::RawParseResult {
-    let _p = profile::span("parse_query").detail(|| format!("{file_id:?}"));
+    let _p = profile::span("polyglot_parse_query").detail(|| format!("{file_id:?}"));
     let text = db.file_text(file_id);
     // polyglot_ast::PolyglotTree::parse(text.to_string().into(), lang)
     polyglot_ast::parse(text.to_string().into(), lang)
+}
+
+fn polyglot_parse_source_query(
+    db: &dyn SourceDatabase,
+    // TODO use Arc<str> one way or another to avoid unecessary copies
+    source: String,
+    lang: polyglot_ast::util::Language,
+) -> polyglot_ast::RawParseResult {
+    let _p = profile::span("polyglot_parse_source_query")
+        .detail(|| format!("{:?}", source.lines().next().unwrap()));
+    let text = source;
+    polyglot_ast::parse(text.into(), lang)
 }
 
 /// We don't want to give HIR knowledge of source roots, hence we extract these
