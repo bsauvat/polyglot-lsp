@@ -2,6 +2,7 @@ use ide_db::{
     base_db::{FileId, SourceDatabase},
     RootDatabase,
 };
+use polyglot_ast::prelude::PolyglotTreeSerializer;
 use syntax::{
     AstNode, NodeOrToken, SourceFile, SyntaxKind::STRING, SyntaxToken, TextRange, TextSize,
 };
@@ -78,7 +79,7 @@ pub(crate) fn polyglot_syntax_tree(
     }
 }
 
-//new impl for polyglot_syntax_tree_global
+/// new impl for polyglot_syntax_tree_global
 pub(crate) fn polyglot_syntax_tree_global(
     db: &RootDatabase,
     global: polyglot_ast::context::GlobalContext,
@@ -91,12 +92,8 @@ pub(crate) fn polyglot_syntax_tree_global(
         let mut result = global.root_tree();
         let zipper = polyglot_ast::PolyglotZipper::new(result.as_ref().unwrap());
         //call method process_impl from polyglot_processor.rs to process the tree
-        let tree_printer =
-            &mut polyglot_ast::polyglot_tree::polyglot_processor::TreePrinterGlobal::new(
-                std::sync::Arc::new(global),
-            );
-        tree_printer.process_impl(zipper);
-        tree_printer.get_result().to_string()
+        use polyglot_ast::polyglot_tree::polyglot_processor::PolyglotTreeSerializer;
+        PolyglotTreeSerializer::from(&global).to_string()
         //format!("{:#?}", parse.tree())
     }
 }
