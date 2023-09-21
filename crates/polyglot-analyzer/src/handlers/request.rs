@@ -165,7 +165,7 @@ pub(crate) fn handle_syntax_tree(
                 dbg!(&x);
                 // TODO x.get_path() or get_code() and get_lang()
                 let lang = x.lang();
-                if global.get_raw(&h).is_none(){
+                if global.raw(&h).is_none(){
                     if let Some(code) = x.source() {
                         // snap.analysis.polyglot_tree(id, lang)
                         //todo!("snap.analysis.polyglot_tree() but without file id but an Arc<str> ie. code variable")
