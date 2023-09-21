@@ -1403,6 +1403,7 @@ dependencies = [
 [[package]]
 name = "polyglot_ast"
 version = "0.1.0"
+source = "git+https://github.com/bsauvat/polyglot_ast?branch=new_structure#7b66213ceb28a136b65442cba2dcd401d33697a0"
 dependencies = [
  "cc",
  "thiserror",
