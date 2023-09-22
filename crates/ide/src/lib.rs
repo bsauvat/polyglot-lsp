@@ -318,6 +318,8 @@ impl Analysis {
         self.with_db(|db| syntax_tree::syntax_tree(db, file_id, text_range))
     }
 
+    /// 4 main fonctions that manage polyglot trees
+
     pub fn polyglot_syntax_tree(
         &self,
         file_id: FileId,

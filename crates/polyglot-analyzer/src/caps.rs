@@ -104,6 +104,8 @@ pub fn server_capabilities(config: &Config) -> ServerCapabilities {
                                 options: None,
                             },
                         },
+                        
+                        //recognition of Java, JavaScript, and Python files
                         FileOperationFilter {
                             scheme: Some(String::from("file")),
                             pattern: FileOperationPattern {

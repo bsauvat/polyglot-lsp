@@ -131,14 +131,13 @@ pub(crate) fn handle_shuffle_crate_graph(state: &mut GlobalState, _: ()) -> anyh
     Ok(())
 }
 
+//function that manage the partial polyglot tree handling using global context
 pub(crate) fn handle_syntax_tree(
     snap: GlobalStateSnapshot,
     params: lsp_ext::SyntaxTreeParams,
 ) -> anyhow::Result<String> {
-    eprintln!("PASSAGE DANS LE HANDLE SYNTAX TREE");
     let _p = profile::span("handle_syntax_tree");
     let id = from_proto::file_id(&snap, &params.text_document.uri)?;
-    //deletion of ? in the 2 lines below because not authorized to use it
     let binding = from_proto::abs_path(&params.text_document.uri)?;
     let ext: &str = binding
         .extension()

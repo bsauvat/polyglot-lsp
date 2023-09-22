@@ -102,6 +102,7 @@ fn parse_query(db: &dyn SourceDatabase, file_id: FileId) -> Parse<ast::SourceFil
     SourceFile::parse(&text)
 }
 
+//returns the polyglot parse result for code that is in FileId type
 fn polyglot_parse_query(
     db: &dyn SourceDatabase,
     file_id: FileId,
@@ -113,6 +114,7 @@ fn polyglot_parse_query(
     polyglot_ast::parse(text.to_string().into(), lang)
 }
 
+//returns the polyglot parse result for code that is in source type
 fn polyglot_parse_source_query(
     db: &dyn SourceDatabase,
     // TODO use Arc<str> one way or another to avoid unecessary copies

@@ -16,7 +16,6 @@ use semver::Version;
 use stdx::always;
 use triomphe::Arc;
 
-//TODO BASTIEN : add polyjson project ?
 use crate::{
     build_scripts::BuildScriptOutput,
     cargo_workspace::{DepKind, PackageData, RustLibSource},
@@ -150,6 +149,7 @@ impl fmt::Debug for ProjectWorkspace {
                 .field("sysroot", &sysroot.is_ok())
                 .field("n_rustc_cfg", &rustc_cfg.len())
                 .finish(),
+            //adding PolyJson to ProjectWorkspace::Debug
             ProjectWorkspace::PolyJson { project, sysroot, rustc_cfg, toolchain } => {
                 let mut debug_struct = f.debug_struct("PolyJson");
                 debug_struct.field("n_crates", &project.n_crates());
@@ -217,22 +217,12 @@ impl ProjectWorkspace {
                 let project_location = poly_json.parent().to_path_buf();
                 let toolchain = version(&*project_location, toolchain::rustc(), "rustc ")?;
                 let poly_json = PolyJsonProject::new(&project_location, data);
-                // TODO ProjectWorkspace
                 ProjectWorkspace::load_poly_json(
                     poly_json,
                     config.target.as_deref(),
                     &config.extra_env,
                     toolchain,
                 )
-                
-                /*
-                ProjectWorkspace::load_poly_json(
-                    poly_json,
-                    config.target.as_deref(),
-                    &config.extra_env,
-                    toolchain,
-                )
-                */
             }
 
             ProjectManifest::CargoToml(cargo_toml) => {
@@ -383,7 +373,6 @@ impl ProjectWorkspace {
         ProjectWorkspace::Json { project: project_json, sysroot, rustc_cfg, toolchain }
     }
 
-    //TODO implem load_poly_json
     pub fn load_poly_json(
         poly_json: PolyJsonProject,
         target: Option<&str>,

@@ -44,6 +44,7 @@ pub(crate) fn syntax_tree(
     }
 }
 
+//function that prints the result of the polyglot syntax tree well indented
 pub(crate) fn polyglot_syntax_tree(
     db: &RootDatabase,
     file_id: FileId,
@@ -79,7 +80,7 @@ pub(crate) fn polyglot_syntax_tree(
     }
 }
 
-/// new impl for polyglot_syntax_tree_global
+/// new impl of polyglot_syntax_tree that uses the global context
 pub(crate) fn polyglot_syntax_tree_global(
     db: &RootDatabase,
     global: polyglot_ast::context::GlobalContext,
